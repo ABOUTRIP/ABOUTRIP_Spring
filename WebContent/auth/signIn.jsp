@@ -14,17 +14,9 @@
 	<!-- Pills navs -->
 	<main>
 
-	<div class="container min-vh-100">
-		<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-			<li class="nav-item" role="presentation"><a
-				class="nav-link active" id="tab-login" data-mdb-toggle="pill"
-				href="#pills-login" role="tab" aria-controls="pills-login"
-				aria-selected="true">로그인</a></li>
-			<li class="nav-item" role="presentation"><a class="nav-link "
-				id="tab-register" data-mdb-toggle="pill" href="#pills-register"
-				role="tab" aria-controls="pills-register" aria-selected="false">회원가입</a></li>
-		</ul>
-		<!-- Pills navs -->
+    <div class="container min-vh-100 d-flex flex-column justify-content-center">
+		<h2 class="mb-5">로그인</h2>
+
 		<!-- Pills content -->
 		<div class="tab-content">
 			<div class="tab-pane fade show active" id="pills-login"
@@ -64,52 +56,6 @@
 						class="btn btn-primary btn-block mb-4" onclick="login()">
 						로그인</button>
 
-				</form>
-			</div>
-			<div class="tab-pane fade" id="pills-register" role="tabpanel"
-				aria-labelledby="tab-register">
-				<form>
-
-					<div class="form-outline mb-4">
-						<input type="text" id="registerName" class="form-control" /> <label
-							class="form-label" for="registerName">이름</label>
-					</div>
-
-					<div class="form-outline mb-4">
-						<input type="text" id="registerId" class="form-control" /> <label
-							class="form-label" for="registerName">아이디</label>
-					</div>
-
-					<!-- Password input -->
-					<div class="form-outline mb-4">
-						<input type="password" id="registerPassword" class="form-control" />
-						<label class="form-label" for="registerPassword">비밀번호</label>
-					</div>
-
-					<!-- Repeat Password input -->
-					<div class="form-outline mb-4">
-						<input type="password" id="registerRepeatPassword"
-							class="form-control" /> <label class="form-label"
-							for="registerRepeatPassword">비밀번호 확인</label>
-					</div>
-					<div class="form-outline mb-4">
-						<input type="email" id="registerId" class="form-control" /> <label
-							class="form-label" for="registerName">이메일</label>
-					</div>
-					<label class="form-label" for="registerName">지역</label>
-					<div class="form-outline mb-4">
-						<div class="d-flex">
-							<select id="sido" class="form-select me-2">
-								<option value="0" selected>시도선택</option>
-							</select> <select id="gugun" class="form-select me-2">
-								<option value="0" selected>구군선택</option>
-							</select>
-						</div>
-					</div>
-
-					<!-- Submit button -->
-					<button type="submit" class="btn btn-primary btn-block mb-3"
-						onclick="regist()">회원가입</button>
 				</form>
 			</div>
 		</div>

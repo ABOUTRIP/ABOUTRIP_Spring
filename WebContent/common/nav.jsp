@@ -16,7 +16,7 @@
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link" aria-current="page"
-					href="tripSearch.html">지역별여행지</a></li>
+					href="${root}/regionalTrip/index.jsp">지역별여행지</a></li>
 				<li class="nav-item"><a class="nav-link" href="myTripPlan.html">나의여행계획</a></li>
 				<li class="nav-item"><a class="nav-link" href="hotPlace.html">핫플자랑하기</a>
 				</li>

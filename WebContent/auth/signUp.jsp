@@ -12,58 +12,12 @@
 	<%@ include file="/common/nav.jsp"%>
 
 	<main> <!-- Pills navs -->
-	<div class="container min-vh-100">
-		<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-			<li class="nav-item" role="presentation"><a class="nav-link"
-				id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
-				aria-controls="pills-login" aria-selected="true">로그인</a></li>
-			<li class="nav-item" role="presentation"><a
-				class="nav-link active" id="tab-register" data-mdb-toggle="pill"
-				href="#pills-register" role="tab" aria-controls="pills-register"
-				aria-selected="false">회원가입</a></li>
-		</ul>
-		<!-- Pills navs -->
+    <div class="container min-vh-100 d-flex flex-column justify-content-center">
+
+
+		<h2 class="mb-5">회원가입</h2>
 		<!-- Pills content -->
 		<div class="tab-content">
-			<div class="tab-pane fade" id="pills-login" role="tabpanel"
-				aria-labelledby="tab-login">
-				<form>
-					<!-- ID input -->
-					<div class="form-outline mb-4">
-						<input type="id" id="loginId" class="form-control" /> <label
-							class="form-label" for="loginId">아이디</label>
-					</div>
-
-					<!-- Password input -->
-					<div class="form-outline mb-4">
-						<input type="password" id="loginPassword" class="form-control" />
-						<label class="form-label" for="loginPassword">비밀번호</label>
-					</div>
-
-					<!-- 2 column grid layout -->
-					<div class="row mb-4">
-						<div class="col-md-6 d-flex justify-content-center">
-							<!-- Checkbox -->
-							<div class="form-check mb-3 mb-md-0">
-								<input class="form-check-input" type="checkbox" value=""
-									id="loginCheck" checked /> <label class="form-check-label"
-									for="loginCheck"> 아이디 저장하기 </label>
-							</div>
-						</div>
-
-						<div class="col-md-6 d-flex justify-content-center">
-							<!-- Simple link -->
-							<button class="btn btn-primary">비밀번호 찾기</button>
-						</div>
-					</div>
-
-					<!-- Submit button -->
-					<button type="button" id="loginButton"
-						class="btn btn-primary btn-block mb-4" onclick="login()">
-						로그인</button>
-
-				</form>
-			</div>
 			<div class="tab-pane fade show active" id="pills-register"
 				role="tabpanel" aria-labelledby="tab-register">
 				<form>
@@ -112,6 +66,32 @@
 		</div>
 	</div>
 	</main>
+
 	<%@ include file="/common/footer.jsp"%>
+	<script src="${root}/assets/js/key.js"></script>
+	<script>
+      // index page 로딩 후 전국의 시도 설정.
+      let areaUrl =
+        "https://apis.data.go.kr/B551011/KorService1/areaCode1?serviceKey=" +
+        serviceKey +
+        "&numOfRows=20&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json";
+
+      fetch(areaUrl, { method: "GET" })
+        .then((response) => response.json())
+        .then((data) => makeOption(data));
+
+      function makeOption(data) {
+        let areas = data.response.body.items.item;
+        let sel = document.getElementById("sido");
+        areas.forEach((area) => {
+          let opt = document.createElement("option");
+          opt.setAttribute("value", area.code);
+          opt.appendChild(document.createTextNode(area.name));
+
+          sel.appendChild(opt);
+        });
+      }
+
+    </script>
 </body>
 </html>
