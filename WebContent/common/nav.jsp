@@ -29,9 +29,9 @@
 			<div id="header_nav_confirm_off" style="display: block">
 				<ul class="navbar-nav mb-2 me-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="signUpAndSignIn.html">회원가입</a></li>
+						href="${root}/auth/signUp.jsp">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="signUpAndSignIn.html">로그인</a></li>
+						href="${root}/auth/signIn.jsp">로그인</a></li>
 				</ul>
 			</div>
 

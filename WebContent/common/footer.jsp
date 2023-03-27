@@ -16,7 +16,7 @@
 <!-- MDB -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
-<script src="assets/js/main.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43d24ff8889a34f46a0229960dd544f7"></script>
-	
+
+<script src="${root}/assets/js/main.js"></script>

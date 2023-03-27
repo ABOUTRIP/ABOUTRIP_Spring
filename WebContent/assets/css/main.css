@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+	margin-top: 80px;
+}
+
 #introCarousel, .carousel-inner, .carousel-item, .carousel-item.active {
 	height: 100vh;
 }

@@ -5,11 +5,12 @@
 <head>
 <%@ include file="/common/head.jsp"%>
 
-<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="${root}/assets/css/main.css" />
+
 </head>
 
 
-<body style="margin-top: 80px;">
+<body>
 	<%@ include file="/common/nav.jsp"%>
 
 	<main style="padding-bottom:80px;"> <%@ include
