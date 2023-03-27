@@ -4,17 +4,15 @@
 <html>
 <head>
 <%@ include file="/common/head.jsp"%>
-
 <link rel="stylesheet" href="${root}/assets/css/main.css" />
 </head>
-
 <body>
 	<%@ include file="/common/nav.jsp"%>
-
 	<!-- Pills navs -->
 	<main>
 
-    <div class="container min-vh-100 d-flex flex-column justify-content-center">
+	<div
+		class="container min-vh-100 d-flex flex-column justify-content-center">
 		<h2 class="mb-5">로그인</h2>
 
 		<!-- Pills content -->

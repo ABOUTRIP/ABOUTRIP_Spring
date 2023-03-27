@@ -17,12 +17,12 @@
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link" aria-current="page"
 					href="${root}/regionalTrip/index.jsp">지역별여행지</a></li>
-				<li class="nav-item"><a class="nav-link" href="myTripPlan.html">나의여행계획</a></li>
-				<li class="nav-item"><a class="nav-link" href="hotPlace.html">핫플자랑하기</a>
+				<li class="nav-item"><a class="nav-link" href="${root}/myTripPlan/index.jsp">나의여행계획</a></li>
+				<li class="nav-item"><a class="nav-link" href="${root}/hotPlace/index.jsp">핫플자랑하기</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="shareTrip.html">여행정보공유</a>
+				<li class="nav-item"><a class="nav-link" href="${root}/shareTrip/index.jsp">여행정보공유</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="notice.html">공지사항</a>
+				<li class="nav-item"><a class="nav-link" href="${root}/notice/index.jsp">공지사항</a>
 				</li>
 			</ul>
 			<!-- 로그인 전 -->
@@ -39,7 +39,7 @@
 			<div id="header_nav_confirm_on" style="display: none">
 				<ul class="navbar-nav mb-2 me-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="mypage.html">마이페이지</a></li>
+						href="${root}/auth/mypage.jsp">마이페이지</a></li>
 					<li class="nav-item"><a class="nav-link" aria-current="page"
 						href="#" onclick="logout();">로그아웃</a></li>
 					<li class="nav-item"><a class="nav-link" aria-current="page"
