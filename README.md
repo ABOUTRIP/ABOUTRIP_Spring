@@ -1,6 +1,6 @@
 # EnjoyTrip_BackEnd
 
-# 02*김예빈*우찬희
+# 02-김예빈-우찬희
 
 ## index page
 
