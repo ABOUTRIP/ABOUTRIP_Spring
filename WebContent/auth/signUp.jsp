@@ -4,24 +4,22 @@
 <html>
 <head>
 <%@ include file="/common/head.jsp"%>
-
 <link rel="stylesheet" href="${root}/assets/css/main.css" />
 </head>
-
 <body>
 	<%@ include file="/common/nav.jsp"%>
+	<!-- Pills navs -->
+	<main>
 
-	<main> <!-- Pills navs -->
-    <div class="container min-vh-100 d-flex flex-column justify-content-center">
-
-
+	<div
+		class="container min-vh-100 d-flex flex-column justify-content-center">
 		<h2 class="mb-5">회원가입</h2>
+
 		<!-- Pills content -->
 		<div class="tab-content">
 			<div class="tab-pane fade show active" id="pills-register"
 				role="tabpanel" aria-labelledby="tab-register">
 				<form>
-
 					<div class="form-outline mb-4">
 						<input type="text" id="registerName" class="form-control" /> <label
 							class="form-label" for="registerName">이름</label>
@@ -91,7 +89,6 @@
           sel.appendChild(opt);
         });
       }
-
     </script>
 </body>
 </html>

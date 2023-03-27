@@ -4,12 +4,8 @@
 <html>
 <head>
 <%@ include file="/common/head.jsp"%>
-
 <link rel="stylesheet" href="${root}/assets/css/main.css" />
-
 </head>
-
-
 <body>
 	<%@ include file="/common/nav.jsp"%>
 
