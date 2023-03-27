@@ -28,8 +28,9 @@
 						</h1>
 						<hr class="my-5" />
 						<h5 class="mb-4">나만의 여행 계획을 세우고 공유해 보세요.</h5>
-						<a class="btn btn-outline-light btn-lg m-2" href="myTripPlan.html"
-							role="button" rel="nofollow">일정 더보기</a>
+						<a class="btn btn-outline-light btn-lg m-2"
+							href="${root}/myTripPlan/index.jsp" role="button" rel="nofollow">일정
+							더보기</a>
 					</div>
 				</div>
 			</div>
@@ -80,13 +81,11 @@
 
 	<!-- Controls -->
 	<a class="carousel-control-prev" href="#introCarousel" role="button"
-		data-mdb-slide="prev"> <span
-		class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-		class="sr-only">Previous</span>
+		data-mdb-slide="prev"> <span class="carousel-control-prev-icon"
+		aria-hidden="true"></span> <span class="sr-only">Previous</span>
 	</a> <a class="carousel-control-next" href="#introCarousel" role="button"
-		data-mdb-slide="next"> <span
-		class="carousel-control-next-icon" aria-hidden="true"></span> <span
-		class="sr-only">Next</span>
+		data-mdb-slide="next"> <span class="carousel-control-next-icon"
+		aria-hidden="true"></span> <span class="sr-only">Next</span>
 	</a>
 </div>
 <!-- Carousel wrapper -->
