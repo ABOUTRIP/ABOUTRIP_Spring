@@ -2,6 +2,35 @@
 
 # 02-김예빈-우찬희
 
+## BCrypt를 활용한 비밀번호 암호화
+---
+
+## 비밀번호 check로 회원가입 시도 
+![화면 캡처 2023-04-11 164437](https://user-images.githubusercontent.com/84485400/231092991-63b5b35a-c871-4b78-af98-d04610d5185f.png)
+
+## 해싱된 비밀번호가 db에 들어감
+![화면 캡처 2023-04-11 164602](https://user-images.githubusercontent.com/84485400/231092979-de3ab318-29a9-49fa-8f37-a63ba210faaf.png)
+
+## 로그인 성공
+![화면 캡처 2023-04-11 164844](https://user-images.githubusercontent.com/84485400/231092985-ff28a3f4-a809-440b-868a-4a662a8d28eb.png)
+
+
+## KMP를 활용한 결과 내 재검색 기능
+---
+
+## '치킨' 키워드로 1차 검색한 모습
+![localhost_8080_project2_regionalTrip_index jsp](https://user-images.githubusercontent.com/84485400/231093804-bc0bad47-fe8a-4041-b666-e551b281ea99.png)
+
+
+## '강서방' 키워드로 결과 내 재검색한 모습
+![화면 캡처 2023-04-11 164820](https://user-images.githubusercontent.com/84485400/231093960-9c8b77e9-ad29-4f9f-85d2-2444751dddb9.png)
+
+
+---
+---
+---
+
+
 ## index page
 
 ![localhost_8080_project2_index jsp](https://user-images.githubusercontent.com/49120917/227934621-94a8cd40-af4f-4026-88eb-ceb628b18c72.png)
