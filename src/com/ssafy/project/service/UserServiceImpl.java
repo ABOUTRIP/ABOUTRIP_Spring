@@ -46,6 +46,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public void update(User user) throws IDNotFoundException {
+		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12)));
 		dao.update(user);
 	}
 

@@ -57,7 +57,7 @@ public class UserController extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + path);
 			}
 			if (action.equals("view")) {
-				path = doView(request, response);
+				path = mvMypage(request, response);
 				request.getRequestDispatcher(path).forward(request, response);
 			}
 
@@ -65,12 +65,30 @@ public class UserController extends HttpServlet {
 				path = doUpdate(request, response);
 				response.sendRedirect(request.getContextPath() + path);
 			}
+			
+			if (action.equals("formWithdrawal")) {
+				path = mvWithdraw(request, response);
+				request.getRequestDispatcher(path).forward(request, response);
+			}
+			
+//			if (action.equals("delete")) {
+//				path = doDelete(request, response);
+//				response.sendRedirect(request.getContextPath() + path);
+//			}
 
 		} catch (Exception e) {
 			// error page 만들어야 함
 		}
 	}
-
+	
+//	private String doDelete(HttpServletRequest request, HttpServletResponse response) 
+//			throws ServletException, IOException, IDNotFoundException {
+//		
+//		String str = "";
+//		
+//	}
+//	
+	
 	private String doUpdate(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, IDNotFoundException {
 		String name = request.getParameter("name");
@@ -92,7 +110,7 @@ public class UserController extends HttpServlet {
 		return str;
 	}
 
-	private String doView(HttpServletRequest request, HttpServletResponse response)
+	private String mvMypage(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, IDNotFoundException {
 		String id = request.getParameter("id");
 		User user = userService.SearchById(id);
@@ -100,6 +118,14 @@ public class UserController extends HttpServlet {
 		return "/auth/mypage.jsp";
 	}
 
+	private String mvWithdraw(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, IDNotFoundException {
+		String id = request.getParameter("id");
+		User user = userService.SearchById(id);
+		request.setAttribute("userInfo", user);
+		return "/auth/withdrawal.jsp";
+	}
+	
 	private String doLogin(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, AuthenticationException {
 		String id = request.getParameter("id");

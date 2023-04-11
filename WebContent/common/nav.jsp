@@ -46,7 +46,7 @@
 						<li class="nav-item"><a class="nav-link" aria-current="page"
 							href="${root}/UserController?action=logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link" aria-current="page"
-							href="#" onclick="withdrawal();">회원탈퇴</a></li>
+							href="${root}/UserController?action=formWithdrawal&id=${user.id}">회원탈퇴</a></li>
 					</ul>
 				</div>
 			</c:if>
