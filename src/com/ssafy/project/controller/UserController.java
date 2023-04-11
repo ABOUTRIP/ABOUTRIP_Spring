@@ -1,6 +1,7 @@
 package com.ssafy.project.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -122,7 +123,7 @@ public class UserController extends HttpServlet {
 	}
 
 	private String doRegister(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, DuplicateUserException {
+			throws ServletException, IOException, DuplicateUserException, SQLException {
 
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");

@@ -26,10 +26,10 @@ public class UserDaoImpl implements IUserDao {
 	}
 	
 	@Override
-	public void insert(User user) throws DuplicateUserException {
+	public int insert(User user) throws DuplicateUserException {
 		if (isExist(user.getId())) throw new DuplicateUserException(user.getId());
 		
-		
+		int cnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "insert into user(name, id, password, email, sido, gugun) values (?, ?, ?, ?, ?, ?)"; 
@@ -43,12 +43,13 @@ public class UserDaoImpl implements IUserDao {
 			pstmt.setString(4, user.getEmail());
 			pstmt.setString(5, user.getSido());
 			pstmt.setString(6, user.getGugun());
-			pstmt.executeUpdate();
+			cnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			db.close(pstmt, conn);
 		}
+		return cnt;
 		
 	}
 

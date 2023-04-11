@@ -1,5 +1,9 @@
 package com.ssafy.project.service;
 
+import java.sql.SQLException;
+
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.ssafy.project.dao.IUserDao;
 import com.ssafy.project.dao.UserDaoImpl;
 import com.ssafy.project.dto.User;
@@ -30,8 +34,9 @@ public class UserServiceImpl implements IUserService {
 
 
 	@Override
-	public void add(User user) throws DuplicateUserException {
-		dao.insert(user);
+	public int add(User user) throws DuplicateUserException, SQLException {
+		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12)));
+		return dao.insert(user);
 	}
 
 	@Override
