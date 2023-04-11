@@ -26,7 +26,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User login(String id, String password) throws AuthenticationException{
 		User user = dao.select(id);
-		if(user != null  && user.getPassword().equals(password)) {
+		if(user != null  && BCrypt.checkpw(password, user.getPassword())) {
 			return user;
 		}
 		throw new AuthenticationException();

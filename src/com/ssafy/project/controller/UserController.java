@@ -104,11 +104,12 @@ public class UserController extends HttpServlet {
 			throws ServletException, IOException, AuthenticationException {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-
+		
 		User user = userService.login(id, password);
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-
+		
 		return "/index.jsp";
 
 	}
@@ -143,6 +144,6 @@ public class UserController extends HttpServlet {
 		System.out.println(user.toString());
 
 		userService.add(user);
-		return "/index.jsp"; ///////////////////////
+		return "/index.jsp"; 
 	}
 }
