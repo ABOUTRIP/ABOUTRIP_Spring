@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBUtil {
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private final String URL = "jdbc:mysql://127.0.0.1:3306/enjoytrip?serverTimezone=UTC";
+	private final String URL = "jdbc:mysql://70.12.60.84:3306/enjoytrip?serverTimezone=UTC";
 	private final String USER = "ssafy";
 	private final String PASSWORD = "ssafy";
 	private static DBUtil instance = new DBUtil();

@@ -31,7 +31,16 @@
 					placeholder="검색어" aria-label="검색어" />
 				<button id="btn-search" class="btn btn-outline-success text-nowrap"
 					type="button">검색</button>
+
 			</form>
+			<div id="researchBlock" class="d-flex"
+				style="display: none !important;">
+				<input id="research-keyword" class="form-control me-2" type="search"
+					placeholder="검색어" aria-label="검색어" />
+				<button id="btn-research"
+					class="btn btn-outline-success text-nowrap" type="button">결과
+					내 재검색</button>
+			</div>
 			<!-- kakao map start -->
 			<div id="map" class="mt-3" style="width: 100%; height: 400px"></div>
 			<!-- kakao map end -->
@@ -68,6 +77,8 @@
         serviceKey +
         "&numOfRows=20&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json";
 
+      let tripListData;
+      let markers = [];
       // fetch(areaUrl, { method: "GET" }).then(function (response) { return response.json() }).then(function (data) { makeOption(data); });
       fetch(areaUrl, { method: "GET" })
         .then((response) => response.json())
@@ -86,6 +97,48 @@
         });
       }
 
+      const KMP = (text, pattern) => {
+    	  let tLength = text.length;
+    	  let pLength = pattern.length;
+    	  let pi = [];
+
+    	  for (let i = 1, j = 0; i < pLength; i++) {
+    	    while (j > 0 && pattern[i] != pattern[j]) j = pi[j - 1];
+
+    	    if (pattern[i] == pattern[j]) pi[i] = ++j;
+    	    else pi[i] = 0;
+    	  }
+
+    	  for (let i = 0, j = 0; i < tLength; i++) {
+    	    let findFlag = false;
+    	    while (j > 0 && text[i] != pattern[j]) j = pi[j - 1];
+
+    	    if (text[i] == pattern[j]) {
+    	      if (j == pLength - 1) {
+    	        findFlag = true;
+    	      } else {
+    	        j++;
+    	      }
+    	    }
+    	    if (findFlag) {
+    	      return true;
+    	    }
+    	  }
+    	  return false;
+    	};
+      // 결과 내 재검색 버튼 이벤트
+      document.getElementById("btn-research").addEventListener("click", () => {
+          let keyword = document.getElementById("research-keyword").value;
+
+    	  let newTripListData = tripListData.filter(d=>{
+    		 return KMP(d.title, keyword)
+    	  });
+    	 console.log(newTripListData);
+    	 makeList(newTripListData);
+    	 
+      });
+      
+      
       // 검색 버튼을 누르면..
       // 지역, 유형, 검색어 얻기.
       // 위 데이터를 가지고 공공데이터에 요청.
@@ -107,34 +160,47 @@
 
         fetch(searchUrl)
           .then((response) => response.json())
-          .then((data) => makeList(data));
+          .then((data) => makeList(data.response.body.items.item))
+          .then((d)=>{
+        	  const research = document.getElementById("researchBlock");
+        	  console.log(research);
+        	  research.style.display = "flex";
+        		
+          });
       });
 
       var positions; // marker 배열.
       function makeList(data) {
         document.querySelector("table").setAttribute("style", "display: ;");
-        let trips = data.response.body.items.item;
+        let trips = data;
         let tripList = ``;
+        tripListData = trips;
         positions = [];
-        trips.forEach((area) => {
-          tripList += `
-            <tr onclick="moveCenter(`+area.mapy+`, `+area.mapx+`);">
-              <td><img src="`+area.firstimage+`" width="100px"></td>
-              <td>`+area.title+`</td>
-              <td>`+area.addr1+` `+area.addr2+`</td>
-              <td>`+area.mapy+`</td>
-              <td>`+area.mapx+`</td>
-            </tr>
-          `;
-
-          let markerInfo = {
-            title: area.title,
-            latlng: new kakao.maps.LatLng(area.mapy, area.mapx),
-          };
-          positions.push(markerInfo);
-        });
-        document.getElementById("trip-list").innerHTML = tripList;
-        displayMarker();
+        if(!trips){
+            document.getElementById("trip-list").innerHTML = '';
+            removeMarker();
+        }else{
+	        trips.forEach((area) => {
+	          tripList += `
+	            <tr onclick="moveCenter(`+area.mapy+`, `+area.mapx+`);">
+	              <td><img src="`+area.firstimage+`" width="100px"></td>
+	              <td>`+area.title+`</td>
+	              <td>`+area.addr1+` `+area.addr2+`</td>
+	              <td>`+area.mapy+`</td>
+	              <td>`+area.mapx+`</td>
+	            </tr>
+	          `;
+	
+	          let markerInfo = {
+	            title: area.title,
+	            latlng: new kakao.maps.LatLng(area.mapy, area.mapx),
+	          };
+	          positions.push(markerInfo);
+	        });
+	        document.getElementById("trip-list").innerHTML = tripList;
+	        displayMarker();
+        }
+	        
       }
 
       // 카카오지도
@@ -166,6 +232,7 @@
             title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             image: markerImage, // 마커 이미지
           });
+          markers.push(marker);
         }
 
         // 첫번째 검색 정보를 이용하여 지도 중심을 이동 시킵니다
@@ -175,7 +242,17 @@
       function moveCenter(lat, lng) {
         map.setCenter(new kakao.maps.LatLng(lat, lng));
       }
+      
+      function removeMarker() {
+         // 마커 이미지의 이미지 주소입니다
+         for (var i = 0; i < markers.length; i++) {
+           markers[i].setMap(null);
+         }
+       }
+       function moveCenter(lat, lng) {
+         map.setCenter(new kakao.maps.LatLng(lat, lng));
+       }
     </script>
-    
+
 </body>
 </html>
