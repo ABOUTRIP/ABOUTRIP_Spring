@@ -1,5 +1,6 @@
 package com.ssafy.project.attraction.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @RequestMapping("/attraction")
 @CrossOrigin("*")
-@Api("어드민 컨트롤러  API V1")
+@Api("지역별 여행지 컨트롤러  API V1")
 public class AttractionController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AttractionController.class);
@@ -48,11 +49,12 @@ public class AttractionController {
 			@ApiImplicitParam(name = "searchContentTypeId", value = "관광지유형", required = false, dataType = "int", paramType = "query"),
 			@ApiImplicitParam(name = "searchWord", value = "검색어", required = true, dataType = "String", paramType = "query") })
 	@GetMapping(value = "/list")
-	public ResponseEntity<?> attractionList(@RequestParam("searchSidoCode") int searchSidoCode,
-			@RequestParam("searchContentTypeId") int searchContentTypeId, @RequestParam("searchWord") String searchWord,
-			Map<String, String> map) {
+	public ResponseEntity<?> attractionList(@RequestParam(required = false, defaultValue = "-1") int searchSidoCode,
+			@RequestParam(required = false, defaultValue = "-1") int searchContentTypeId, @RequestParam("searchWord") String searchWord
+			) {
 		logger.debug("attractionList call", searchSidoCode, searchContentTypeId, searchWord);
 		try {
+			Map<String, String> map = new HashMap();
 			map.put("searchSidoCode", String.valueOf(searchSidoCode));
 			map.put("searchContentTypeId", String.valueOf(searchContentTypeId));
 			map.put("searchWord", searchWord);
