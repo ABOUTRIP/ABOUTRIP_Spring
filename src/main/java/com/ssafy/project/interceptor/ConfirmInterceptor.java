@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.ssafy.project.member.model.MemberDto;
+import com.ssafy.project.model.MemberDto;
 
 //@SuppressWarnings("deprecation")
 //public class ConfirmInterceptor extends HandlerInterceptorAdapter {

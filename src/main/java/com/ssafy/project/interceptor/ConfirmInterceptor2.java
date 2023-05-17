@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
-import com.ssafy.project.member.model.MemberDto;
+import com.ssafy.project.model.MemberDto;
 
 public class ConfirmInterceptor2 extends WebContentInterceptor {
 

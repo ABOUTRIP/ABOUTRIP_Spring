@@ -1,4 +1,4 @@
-package com.ssafy.project.admin.controller;
+package com.ssafy.project.controller;
 
 
 import java.util.List;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.project.member.model.MemberDto;
-import com.ssafy.project.member.model.service.MemberService;
+import com.ssafy.project.model.MemberDto;
+import com.ssafy.project.model.service.MemberService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

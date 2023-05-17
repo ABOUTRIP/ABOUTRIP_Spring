@@ -1,4 +1,4 @@
-package com.ssafy.project.member.model.service;
+package com.ssafy.project.model.service;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ssafy.project.member.model.MemberDto;
+import com.ssafy.project.model.MemberDto;
 
 public interface MemberService {
 

@@ -1,4 +1,4 @@
-package com.ssafy.project.gugun.model;
+package com.ssafy.project.model;
 
 public class GugunDto {
 	

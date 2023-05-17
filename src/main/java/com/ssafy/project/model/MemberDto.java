@@ -1,4 +1,4 @@
-package com.ssafy.project.member.model;
+package com.ssafy.project.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

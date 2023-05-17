@@ -1,4 +1,4 @@
-package com.ssafy.project.member.model.mapper;
+package com.ssafy.project.model.mapper;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ssafy.project.member.model.MemberDto;
+import com.ssafy.project.model.MemberDto;
 
 @Mapper
 public interface MemberMapper {

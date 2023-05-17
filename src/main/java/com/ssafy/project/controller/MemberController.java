@@ -1,4 +1,4 @@
-package com.ssafy.project.member.controller;
+package com.ssafy.project.controller;
 
 import java.util.Map;
 
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ssafy.project.member.model.MemberDto;
-import com.ssafy.project.member.model.service.MemberService;
+import com.ssafy.project.model.MemberDto;
+import com.ssafy.project.model.service.MemberService;
 
 @Controller
 @RequestMapping("/user")

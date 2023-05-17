@@ -28,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ssafy.project.board.model.BoardDto;
 import com.ssafy.project.board.model.FileInfoDto;
 import com.ssafy.project.board.model.service.BoardService;
-import com.ssafy.project.member.model.MemberDto;
+import com.ssafy.project.model.MemberDto;
 import com.ssafy.project.util.PageNavigation;
 
 @Controller
