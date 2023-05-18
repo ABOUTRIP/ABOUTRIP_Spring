@@ -1,4 +1,4 @@
-package com.ssafy.project.sido.controller;
+package com.ssafy.project.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.project.sido.model.SidoDto;
-import com.ssafy.project.sido.model.service.SidoService;
+import com.ssafy.project.model.SidoDto;
+import com.ssafy.project.model.service.SidoService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

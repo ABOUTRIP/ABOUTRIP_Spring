@@ -1,4 +1,4 @@
-package com.ssafy.project.attraction.model.service;
+package com.ssafy.project.model.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.project.attraction.controller.AttractionController;
-import com.ssafy.project.attraction.model.AttractionDto;
-import com.ssafy.project.attraction.model.mapper.AttractionMapper;
+import com.ssafy.project.controller.AttractionController;
+import com.ssafy.project.model.AttractionDto;
+import com.ssafy.project.model.mapper.AttractionMapper;
 import com.ssafy.project.util.PageNavigation;
 import com.ssafy.project.util.SizeConstant;
 

@@ -1,12 +1,12 @@
-package com.ssafy.project.sido.model.service;
+package com.ssafy.project.model.service;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ssafy.project.sido.model.SidoDto;
-import com.ssafy.project.sido.model.mapper.SidoMapper;
+import com.ssafy.project.model.SidoDto;
+import com.ssafy.project.model.mapper.SidoMapper;
 
 @Service
 public class SidoServiceImpl implements SidoService {

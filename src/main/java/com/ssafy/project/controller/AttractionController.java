@@ -1,4 +1,4 @@
-package com.ssafy.project.attraction.controller;
+package com.ssafy.project.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.project.attraction.model.AttractionDto;
-import com.ssafy.project.attraction.model.service.AttractionService;
+import com.ssafy.project.model.AttractionDto;
+import com.ssafy.project.model.service.AttractionService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

@@ -1,4 +1,4 @@
-package com.ssafy.project.sido.model;
+package com.ssafy.project.model;
 
 public class SidoDto {
 	

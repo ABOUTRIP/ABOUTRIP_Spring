@@ -1,11 +1,11 @@
-package com.ssafy.project.sido.model.mapper;
+package com.ssafy.project.model.mapper;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.ssafy.project.sido.model.SidoDto;
+import com.ssafy.project.model.SidoDto;
 
 @Mapper
 public interface SidoMapper {

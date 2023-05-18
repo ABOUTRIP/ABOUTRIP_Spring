@@ -1,4 +1,4 @@
-package com.ssafy.project.attraction.model;
+package com.ssafy.project.model;
 
 public class AttractionDetailDto {
 
