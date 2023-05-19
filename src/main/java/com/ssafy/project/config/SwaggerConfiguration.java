@@ -2,7 +2,9 @@ package com.ssafy.project.config;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.context.annotation.Bean;
@@ -11,8 +13,12 @@ import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
+import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.SecurityReference;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -27,6 +33,8 @@ public class SwaggerConfiguration {
 
 	private String version = "V1";
 	private String title = "SSAFY Board API " + version;
+	private static final String REFERENCE = "Authorization 헤더 값";
+
 	
 	@Bean
 	public Docket api() {
@@ -34,7 +42,9 @@ public class SwaggerConfiguration {
 					.apiInfo(apiInfo()).groupName(version).select()
 					.apis(RequestHandlerSelectors.basePackage("com.ssafy.project"))
 					.paths(regex("/.*")).build()
-					.useDefaultResponseMessages(false);
+					.useDefaultResponseMessages(false)
+					.securityContexts(Arrays.asList(securityContext()))
+					.securitySchemes(Arrays.asList(securityScheme()));
 	}
 	
 	private Set<String> getConsumeContentTypes() {
@@ -60,4 +70,27 @@ public class SwaggerConfiguration {
 				.version("1.0").build();
 	}
 	
+	//
+	private SecurityContext securityContext() {
+		return springfox.documentation
+				.spi.service.contexts
+				.SecurityContext
+				.builder()
+				.securityReferences(defaultAuth())
+				.operationSelector(operationContext -> true)
+				.build();
+	}
+	
+	private List<SecurityReference> defaultAuth() {
+	    AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+	    AuthorizationScope[] authorizationScopes = {authorizationScope};
+	    return Arrays.asList(new SecurityReference(REFERENCE, authorizationScopes));
+	}
+	
+	private ApiKey securityScheme() {
+		String targetHeader = "Authorization"; // 어떠한 헤더에 값을 대입할 것인가: Authorization 헤더
+		return new ApiKey(REFERENCE, targetHeader, "header");
+	}
+
+
 }

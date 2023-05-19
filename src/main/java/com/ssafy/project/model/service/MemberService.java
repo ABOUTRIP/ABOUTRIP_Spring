@@ -20,4 +20,13 @@ public interface MemberService {
 	void updateMember(MemberDto memberDto) throws Exception;
 	void deleteMember(String userid) throws Exception;
 	
+	/* login */
+	public MemberDto login(MemberDto memberDto) throws Exception;
+	public MemberDto userInfo(String userid) throws Exception;
+	
+	/* token */
+	public void saveRefreshToken(String userid, String refreshToken) throws Exception;
+	public Object getRefreshToken(String userid) throws Exception;
+	public void deleRefreshToken(String userid) throws Exception;
+	
 }

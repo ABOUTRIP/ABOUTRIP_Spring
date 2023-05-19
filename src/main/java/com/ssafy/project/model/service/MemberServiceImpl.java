@@ -1,19 +1,23 @@
 package com.ssafy.project.model.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.project.model.MemberDto;
 import com.ssafy.project.model.mapper.MemberMapper;
 
+
 @Service
 public class MemberServiceImpl implements MemberService {
 	
-//	@Autowired
-//	private SqlSession sqlSession;
+	@Autowired
+	private SqlSession sqlSession;
 	
 	private MemberMapper memberMapper;
 
@@ -59,6 +63,39 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void deleteMember(String userId) throws Exception {
 		memberMapper.deleteMember(userId);		
+	}
+
+	@Override
+	public MemberDto login(MemberDto memberDto) throws Exception {
+		if (memberDto.getUserId() == null || memberDto.getUserPwd() == null)
+			return null;
+		return sqlSession.getMapper(MemberMapper.class).login(memberDto);
+	}
+
+	@Override
+	public MemberDto userInfo(String userid) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).userInfo(userid);
+	}
+
+	@Override
+	public void saveRefreshToken(String userid, String refreshToken) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userid);
+		map.put("token", refreshToken);
+		sqlSession.getMapper(MemberMapper.class).saveRefreshToken(map);
+	}
+
+	@Override
+	public Object getRefreshToken(String userid) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).getRefreshToken(userid);
+	}
+
+	@Override
+	public void deleRefreshToken(String userid) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userid);
+		map.put("token", null);
+		sqlSession.getMapper(MemberMapper.class).deleteRefreshToken(map);
 	}
 
 }

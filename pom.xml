@@ -79,6 +79,14 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.6.6</version>
 		</dependency>
+
+		<!-- JWT -->
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

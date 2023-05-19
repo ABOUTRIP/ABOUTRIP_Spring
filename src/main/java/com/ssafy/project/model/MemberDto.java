@@ -2,6 +2,7 @@ package com.ssafy.project.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 
 @ApiModel(value = "MemberDto (회원정보)", description = "아이디, 비번, 이름.을 가진   Domain Class")
 public class MemberDto {
@@ -14,23 +15,28 @@ public class MemberDto {
 	private String userPwd;
 	@ApiModelProperty(value = "이메일")
 	private String email;
+	@ApiModelProperty(value = "어드민 여부")
+	private char isAdmin;
 	@ApiModelProperty(value = "시/도 코드")
 	private int sidoCode;
-//	@ApiModelProperty(value = "시/도")
-//	private SidoDto sido;
+	@ApiModelProperty(value = "구/군 코드")
+	private int gugunCode;
 	@ApiModelProperty(value = "가입일")
 	private String joinDate;
 	@ApiModelProperty(value = "탈퇴일")
 	private String deleteAt;
-
-	public MemberDto(String userId, String userName, String userPwd, String email, int sidoCode, String joinDate,
-			String deleteAt) {
+	
+	@Builder
+	public MemberDto(String userId, String userName, String userPwd, String email, char isAdmin, int sidoCode,
+			int gugunCode, String joinDate, String deleteAt) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.userPwd = userPwd;
 		this.email = email;
+		this.isAdmin = isAdmin;
 		this.sidoCode = sidoCode;
+		this.gugunCode = gugunCode;
 		this.joinDate = joinDate;
 		this.deleteAt = deleteAt;
 	}
@@ -67,6 +73,14 @@ public class MemberDto {
 		this.email = email;
 	}
 
+	public char getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(char isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public int getSidoCode() {
 		return sidoCode;
 	}
@@ -75,13 +89,13 @@ public class MemberDto {
 		this.sidoCode = sidoCode;
 	}
 
-//	public SidoDto getSido() {
-//		return sido;
-//	}
-//
-//	public void setSido(SidoDto sido) {
-//		this.sido = sido;
-//	}
+	public int getGugunCode() {
+		return gugunCode;
+	}
+
+	public void setGugunCode(int gugunCode) {
+		this.gugunCode = gugunCode;
+	}
 
 	public String getJoinDate() {
 		return joinDate;
@@ -102,8 +116,8 @@ public class MemberDto {
 	@Override
 	public String toString() {
 		return "MemberDto [userId=" + userId + ", userName=" + userName + ", userPwd=" + userPwd + ", email=" + email
-				+ ", sidoCode=" + sidoCode + ", joinDate=" + joinDate + ", deleteAt=" + deleteAt
-				+ "]";
+				+ ", isAdmin=" + isAdmin + ", sidoCode=" + sidoCode + ", gugunCode=" + gugunCode + ", joinDate="
+				+ joinDate + ", deleteAt=" + deleteAt + "]";
 	}
-
+	
 }
