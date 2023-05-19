@@ -51,19 +51,19 @@ public class NoticeController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 
-//	@ApiOperation(value = "게시판 글목록", notes = "모든 게시글의 정보를 반환한다.", response = List.class)
-//	@GetMapping
-//	public ResponseEntity<List<NoticeDto>> listNotice(@ApiParam(value = "게시글을 얻기위한 부가정보.", required = true) BoardParameterDto noticeParameterDto) throws Exception {
-//		logger.info("listNotice - 호출");
-//		return new ResponseEntity<List<NoticeDto>>(noticeService.listNotice(noticeParameterDto), HttpStatus.OK);
-//	}
+	@ApiOperation(value = "게시판 글목록", notes = "모든 게시글의 정보를 반환한다.", response = List.class)
+	@GetMapping
+	public ResponseEntity<List<NoticeDto>> listNotice(@ApiParam(value = "게시글을 얻기위한 부가정보.", required = true) BoardParameterDto boardParameterDto) throws Exception {
+		logger.info("listNotice - 호출");
+		return new ResponseEntity<List<NoticeDto>>(noticeService.listNotice(boardParameterDto), HttpStatus.OK);
+	}
 
 	@ApiOperation(value = "게시판 글보기", notes = "글번호에 해당하는 게시글의 정보를 반환한다.", response = NoticeDto.class)
 	@GetMapping("/{noticeno}")
 	public ResponseEntity<NoticeDto> getNotice(
 			@PathVariable("noticeno") @ApiParam(value = "얻어올 글의 글번호.", required = true) int noticeno) throws Exception {
 		logger.info("getNotice - 호출 : " + noticeno);
-//		noticeService.update(noticeno);
+//		noticeService.updateHit(noticeno);
 		return new ResponseEntity<NoticeDto>(noticeService.getNotice(noticeno), HttpStatus.OK);
 	}
 

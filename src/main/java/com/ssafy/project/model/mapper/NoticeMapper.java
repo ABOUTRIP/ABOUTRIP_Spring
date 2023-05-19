@@ -1,13 +1,15 @@
 package com.ssafy.project.model.mapper;
 
 import java.sql.SQLException;
+import java.util.List;
 
+import com.ssafy.project.model.BoardParameterDto;
 import com.ssafy.project.model.NoticeDto;
 
 public interface NoticeMapper {
 	public int writeNotice(NoticeDto noticeDto) throws SQLException;
-//	public List<NoticeDto> listNotice(NoticeParameterDto noticeParameterDto) throws SQLException;
-//	public int getTotalCount(NoticeParameterDto noticeParameterDto) throws SQLException;
+	public List<NoticeDto> listNotice(BoardParameterDto boardParameterDto) throws SQLException;
+	public int getTotalCount(BoardParameterDto boardParameterDto) throws SQLException;
 	public NoticeDto getNotice(int noticeno) throws SQLException;
 //	public void updateHit(int noticeno) throws SQLException;
 	public int modifyNotice(NoticeDto noticeDto) throws SQLException;

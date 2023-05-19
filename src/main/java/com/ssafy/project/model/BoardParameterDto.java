@@ -12,8 +12,8 @@ public class BoardParameterDto {
 	private int spp;
 	@ApiModelProperty(value = "페이지의 시작 글번호")
 	private int start;
-	@ApiModelProperty(value = "검색 조건")
-	private String key;
+//	@ApiModelProperty(value = "검색 조건")
+//	private String key;
 	@ApiModelProperty(value = "검색어")
 	private String word;
 	
@@ -47,13 +47,13 @@ public class BoardParameterDto {
 		this.start = start;
 	}
 
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
+//	public String getKey() {
+//		return key;
+//	}
+//
+//	public void setKey(String key) {
+//		this.key = key;
+//	}
 
 	public String getWord() {
 		return word;
