@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.project.model.mapper.NoticeMapper">
+
+<!-- 
+	void writeNotice(NoticeDto noticeDto) throws SQLException;
+	List<NoticeDto> listNotice(BoardParameterDto boardParameterDto) throws SQLException;
+	int getTotalCount(BoardParameterDto boardParameterDto) throws SQLException;
+	NoticeDto getNotice(int noticeId) throws SQLException;
+	void updateHit(int noticeId) throws SQLException; // notice에서는 필요 없음
+	int modifyNotice(NoticeDto noticeDto) throws SQLException;
+//	public void deleteMemo(int articleno) throws SQLException;
+	void deleteNotice(int noticeId) throws SQLException;
+ -->
+ 
+ 	<insert id="writeNotice" parameterType="NoticeDto">
+		insert into notices (user_id, notice_title, notice_contents)
+		values (#{userId}, #{noticeTitle}, #{noticeContents})
+	</insert>
+	
+	<!--  listNotice  -->
+	
+	<!--  getTotalCount  -->
+		
+	<select id="getNotice" parameterType="int"
+		resultType="NoticeDto">
+		select *
+		from notices
+		where notice_id = #{noticeId}
+	</select>
+	
+	<update id="modifyNotice" parameterType="NoticeDto">
+		update notices
+		set notice_title = #{noticeTitle}, notice_contents = #{noticeContents}
+		where notice_id = #{noticeId}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from notices
+		where notice_id = #{noticeId}
+	</delete>
+</mapper>	

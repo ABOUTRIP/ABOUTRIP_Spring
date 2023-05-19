@@ -20,7 +20,6 @@
 		<result column="gugun_code" property="gugunCode" />
 		<result column="create_at" property="joinDate" />
 		<result column="delete_at" property="deleteAt" />
-		<result column="token" property="token" />
 	</resultMap>
 
 	<select id="idCheck" parameterType="String" resultType="int">
