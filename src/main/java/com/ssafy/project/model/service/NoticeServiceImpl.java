@@ -17,7 +17,7 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Autowired
 	private SqlSession sqlSession;
-
+	
 	@Override
 	public boolean writeNotice(NoticeDto noticeDto) throws Exception {
 		if(noticeDto.getNoticeTitle() == null || noticeDto.getNoticeContents() == null) {

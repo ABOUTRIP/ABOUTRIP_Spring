@@ -25,11 +25,10 @@ public class NoticeDto {
 	@ApiModelProperty(value = "작성일")
 	private String noticeCreateAt;
 	
-	@ApiModelProperty(value = "삭제일")
-	private String noticeDeleteAt;
 
+	@Builder
 	public NoticeDto(int noticeId, String userId, String noticeTitle, String noticeContents, int noticeViewCnt,
-			String noticeCreateAt, String noticeDeleteAt) {
+			String noticeCreateAt) {
 		super();
 		this.noticeId = noticeId;
 		this.userId = userId;
@@ -37,7 +36,6 @@ public class NoticeDto {
 		this.noticeContents = noticeContents;
 		this.noticeViewCnt = noticeViewCnt;
 		this.noticeCreateAt = noticeCreateAt;
-		this.noticeDeleteAt = noticeDeleteAt;
 	}
 
 	public int getNoticeId() {
@@ -88,18 +86,13 @@ public class NoticeDto {
 		this.noticeCreateAt = noticeCreateAt;
 	}
 
-	public String getNoticeDeleteAt() {
-		return noticeDeleteAt;
-	}
-
-	public void setNoticeDeleteAt(String noticeDeleteAt) {
-		this.noticeDeleteAt = noticeDeleteAt;
-	}
-
 	@Override
 	public String toString() {
 		return "NoticeDto [noticeId=" + noticeId + ", userId=" + userId + ", noticeTitle=" + noticeTitle
 				+ ", noticeContents=" + noticeContents + ", noticeViewCnt=" + noticeViewCnt + ", noticeCreateAt="
-				+ noticeCreateAt + ", noticeDeleteAt=" + noticeDeleteAt + "]";
+				+ noticeCreateAt + "]";
 	}
+
+
+
 }
