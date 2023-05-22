@@ -125,17 +125,16 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`members` (
   `user_password` VARCHAR(16) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `is_admin` CHAR(1) NOT NULL DEFAULT 'N',
-  `sido_code` INT NULL DEFAULT NULL,
-  `gugun_code` INT NULL DEFAULT NULL,
+  `sido_code` INT NULL DEFAULT '0',
+  `gugun_code` INT NULL DEFAULT '0',
   `delete_at` TIMESTAMP NULL DEFAULT NULL,
-  `create_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `token` VARCHAR(1000) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   INDEX `members_to_sido_sido_code_fk_idx` (`sido_code` ASC) VISIBLE,
   CONSTRAINT `members_to_sido_sido_code_fk`
     FOREIGN KEY (`sido_code`)
-    REFERENCES `enjoytrip`.`sido` (`sido_code`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `enjoytrip`.`sido` (`sido_code`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -171,8 +170,10 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`hotplaces` (
   `hotplace_title` VARCHAR(45) NOT NULL,
   `hotplace_name` VARCHAR(45) NOT NULL,
   `hotplace_description` VARCHAR(1000) NOT NULL,
-  `hotplace_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hotplace_status` INT NOT NULL DEFAULT '0',
+  `hotplace_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `hotplace_delete_at` TIMESTAMP NULL DEFAULT NULL,
+  `img` LONGBLOB NULL DEFAULT NULL,
   PRIMARY KEY (`hotplace_id`),
   INDEX `hotplaces_to_user_user_id_fk_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `hotplaces_to_members_user_id_fk`
@@ -191,14 +192,15 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`notices` (
   `user_id` VARCHAR(16) NOT NULL,
   `notice_title` VARCHAR(45) NOT NULL,
   `notice_contents` VARCHAR(1000) NOT NULL,
-  `notice_view_cnt` INT NOT NULL DEFAULT '0',
   `notice_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `notice_delete_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`notice_id`),
   INDEX `notices_to_user_user_id_fk_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `notices_to_members_user_id_fk`
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 47
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -208,13 +210,14 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `enjoytrip`.`plans` (
   `plan_id` INT NOT NULL AUTO_INCREMENT,
-  `plan_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `plan_startdate` TIMESTAMP NOT NULL,
   `plan_enddate` TIMESTAMP NOT NULL,
   `plan_title` VARCHAR(45) NOT NULL,
   `plan_contents` VARCHAR(1000) NULL DEFAULT NULL,
   `user_id` VARCHAR(16) NOT NULL,
   `plan_path` JSON NOT NULL,
+  `plan_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `plan_delete_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`plan_id`),
   INDEX `plans_to_user_user_id_fk_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `plans_to_members_user_id_fk`
@@ -236,12 +239,14 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`tips` (
   `tip_view_cnt` INT NOT NULL DEFAULT '0',
   `tip_like_cnt` INT NOT NULL DEFAULT '0',
   `tip_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tip_delete_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`tip_id`),
   INDEX `tips_to_user_user_id_fk_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `tips_to_members_user_id_fk`
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
