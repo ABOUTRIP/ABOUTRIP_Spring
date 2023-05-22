@@ -19,23 +19,24 @@ public class NoticeDto {
 	@ApiModelProperty(value = "글 내용")
 	private String noticeContents;
 	
-	@ApiModelProperty(value = "조회수")
-	private int noticeViewCnt;
+//	@ApiModelProperty(value = "조회수")
+//	private int noticeViewCnt;
 	
 	@ApiModelProperty(value = "작성일")
 	private String noticeCreateAt;
 	
+	@ApiModelProperty(value = "삭제일")
+	private String noticeDeleteAt;
 
-	@Builder
-	public NoticeDto(int noticeId, String userId, String noticeTitle, String noticeContents, int noticeViewCnt,
-			String noticeCreateAt) {
+	public NoticeDto(int noticeId, String userId, String noticeTitle, String noticeContents, String noticeCreateAt,
+			String noticeDeleteAt) {
 		super();
 		this.noticeId = noticeId;
 		this.userId = userId;
 		this.noticeTitle = noticeTitle;
 		this.noticeContents = noticeContents;
-		this.noticeViewCnt = noticeViewCnt;
 		this.noticeCreateAt = noticeCreateAt;
+		this.noticeDeleteAt = noticeDeleteAt;
 	}
 
 	public int getNoticeId() {
@@ -70,14 +71,6 @@ public class NoticeDto {
 		this.noticeContents = noticeContents;
 	}
 
-	public int getNoticeViewCnt() {
-		return noticeViewCnt;
-	}
-
-	public void setNoticeViewCnt(int noticeViewCnt) {
-		this.noticeViewCnt = noticeViewCnt;
-	}
-
 	public String getNoticeCreateAt() {
 		return noticeCreateAt;
 	}
@@ -86,13 +79,19 @@ public class NoticeDto {
 		this.noticeCreateAt = noticeCreateAt;
 	}
 
+	public String getNoticeDeleteAt() {
+		return noticeDeleteAt;
+	}
+
+	public void setNoticeDeleteAt(String noticeDeleteAt) {
+		this.noticeDeleteAt = noticeDeleteAt;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeDto [noticeId=" + noticeId + ", userId=" + userId + ", noticeTitle=" + noticeTitle
-				+ ", noticeContents=" + noticeContents + ", noticeViewCnt=" + noticeViewCnt + ", noticeCreateAt="
-				+ noticeCreateAt + "]";
+				+ ", noticeContents=" + noticeContents + ", noticeCreateAt=" + noticeCreateAt + ", noticeDeleteAt="
+				+ noticeDeleteAt + "]";
 	}
-
-
-
+	
 }

@@ -22,7 +22,7 @@
 	
 	<!--  -->
 	<select id="listNotice" parameterType="map" resultType="noticeDto">
-		select notice_id, user_id, notice_title, notice_contents, notice_view_cnt, notice_create_at  
+		select notice_id, user_id, notice_title, notice_contents, notice_create_at, notice_delete_at
 		from notices 
 		<if test="word != null and word != ''">
 			where notice_title like concat('%', #{word}, '%') 
