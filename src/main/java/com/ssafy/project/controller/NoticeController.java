@@ -60,11 +60,15 @@ public class NoticeController {
 
 	@ApiOperation(value = "게시판 글보기", notes = "글번호에 해당하는 게시글의 정보를 반환한다.", response = NoticeDto.class)
 	@GetMapping("/{noticeno}")
-	public ResponseEntity<NoticeDto> getNotice(
+	public ResponseEntity<?> getNotice(
 			@PathVariable("noticeno") @ApiParam(value = "얻어올 글의 글번호.", required = true) int noticeno) throws Exception {
 		logger.info("getNotice - 호출 : " + noticeno);
 //		noticeService.updateHit(noticeno);
-		return new ResponseEntity<NoticeDto>(noticeService.getNotice(noticeno), HttpStatus.OK);
+		if (noticeService.getNotice(noticeno) != null) {
+			return new ResponseEntity<NoticeDto>(noticeService.getNotice(noticeno), HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+//		return new ResponseEntity<NoticeDto>(noticeService.getNotice(noticeno), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "게시판 글수정", notes = "수정할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
