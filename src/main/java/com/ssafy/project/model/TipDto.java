@@ -22,13 +22,16 @@ public class TipDto {
 	@ApiModelProperty(value = "조회수")
 	private int noticeViewCnt;
 	
+	@ApiModelProperty(value = "추천수")
+	private int noticeLikeCnt;
+	
 	@ApiModelProperty(value = "작성일")
 	private String noticeCreateAt;
 	
 	@ApiModelProperty(value = "삭제일")
 	private String noticeDeleteAt;
 
-	public TipDto(int tipId, String userId, String tipTitle, String tipContents, int noticeViewCnt,
+	public TipDto(int tipId, String userId, String tipTitle, String tipContents, int noticeViewCnt, int noticeLikeCnt,
 			String noticeCreateAt, String noticeDeleteAt) {
 		super();
 		this.tipId = tipId;
@@ -36,6 +39,7 @@ public class TipDto {
 		this.tipTitle = tipTitle;
 		this.tipContents = tipContents;
 		this.noticeViewCnt = noticeViewCnt;
+		this.noticeLikeCnt = noticeLikeCnt;
 		this.noticeCreateAt = noticeCreateAt;
 		this.noticeDeleteAt = noticeDeleteAt;
 	}
@@ -80,6 +84,14 @@ public class TipDto {
 		this.noticeViewCnt = noticeViewCnt;
 	}
 
+	public int getNoticeLikeCnt() {
+		return noticeLikeCnt;
+	}
+
+	public void setNoticeLikeCnt(int noticeLikeCnt) {
+		this.noticeLikeCnt = noticeLikeCnt;
+	}
+
 	public String getNoticeCreateAt() {
 		return noticeCreateAt;
 	}
@@ -98,11 +110,8 @@ public class TipDto {
 
 	@Override
 	public String toString() {
-		return "TipsDto [tipId=" + tipId + ", userId=" + userId + ", tipTitle=" + tipTitle + ", tipContents="
-				+ tipContents + ", noticeViewCnt=" + noticeViewCnt + ", noticeCreateAt=" + noticeCreateAt
-				+ ", noticeDeleteAt=" + noticeDeleteAt + "]";
+		return "TipDto [tipId=" + tipId + ", userId=" + userId + ", tipTitle=" + tipTitle + ", tipContents="
+				+ tipContents + ", noticeViewCnt=" + noticeViewCnt + ", noticeLikeCnt=" + noticeLikeCnt
+				+ ", noticeCreateAt=" + noticeCreateAt + ", noticeDeleteAt=" + noticeDeleteAt + "]";
 	}
-	
-	
-
 }
