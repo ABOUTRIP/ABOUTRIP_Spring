@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.project.model.mapper.TipMapper">
+
+<!-- 
+	void updateHit(int tipId) throws SQLException;
+ -->
+ 
+ 	<insert id="writeTip" parameterType="tipDto">
+		insert into tips (user_id, tip_title, tip_contents)
+		values (#{userId}, #{tipTitle}, #{tipContents})
+	</insert>
+	
+	<!--  -->
+	<select id="listTip" parameterType="map" resultType="tipDto">
+		select tip_id, user_id, tip_title, tip_contents, tip_like_cnt, tip_create_at, tip_delete_at
+		from tips 
+		<if test="word != null and word != ''">
+			where tip_title like concat('%', #{word}, '%') 
+			or tip_contents like concat('%', #{word}, '%') 
+		</if> 
+		order by tip_id desc
+		limit #{start}, #{spp}
+	</select>
+	
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(tip_id) 
+		from tips 
+		<if test="word != null and word != ''"> 
+			where tip_title like concat('%', #{word}, '%') 
+			or tip_contents like concat('%', #{word}, '%') 
+		</if>
+	</select>
+	
+	
+	<update id="updateHit" parameterType="int">
+		update tips
+		set tip_like_cnt = tip_like_cnt + 1
+		where tip_id = #{tipId}
+	</update>
+		
+	<select id="getTip" parameterType="int"
+		resultType="TipDto">
+		select *
+		from tips
+		where tip_id = #{tipId}
+	</select>
+	
+	<update id="modifyTip" parameterType="tipDto">
+		update tips
+		set tip_title = #{tipTitle}, tip_contents = #{tipContents}
+		where tip_id = #{tipId}
+	</update>
+	
+	<delete id="deleteTip" parameterType="int">
+		delete from tips
+		where tip_id = #{tipId}
+	</delete>
+</mapper>	

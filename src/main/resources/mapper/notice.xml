@@ -42,8 +42,6 @@
 		</if>
 	</select>
 	
-	
-	<!--  -->
 		
 	<select id="getNotice" parameterType="int"
 		resultType="NoticeDto">
