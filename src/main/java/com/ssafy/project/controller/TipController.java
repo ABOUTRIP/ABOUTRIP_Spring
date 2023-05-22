@@ -87,7 +87,7 @@ public class TipController {
 	@ApiOperation(value = "게시판 글삭제", notes = "글번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@DeleteMapping("/{tipno}")
 	public ResponseEntity<String> deleteTip(
-			@PathVariable("tipno") @ApiParam(value = "살제할 글의 글번호.", required = true) int tipno) throws Exception {
+			@PathVariable("tipno") @ApiParam(value = "삭제할 글의 글번호.", required = true) int tipno) throws Exception {
 		logger.info("deleteTip - 호출");
 		if (tipService.deleteTip(tipno)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);

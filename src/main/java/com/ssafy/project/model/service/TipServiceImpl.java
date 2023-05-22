@@ -70,7 +70,7 @@ public class TipServiceImpl implements TipService {
 	@Override
 	@Transactional
 	public boolean deleteTip(int tipId) throws Exception {
-		sqlSession.getMapper(TipMapper.class).deleteTip(tipId);
+//		sqlSession.getMapper(TipMapper.class).deleteTip(tipId);
 		return sqlSession.getMapper(TipMapper.class).deleteTip(tipId) == 1;
 	}
 	
