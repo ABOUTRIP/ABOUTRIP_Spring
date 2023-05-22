@@ -15,7 +15,7 @@
 	
 	<!--  -->
 	<select id="listTip" parameterType="map" resultType="tipDto">
-		select tip_id, user_id, tip_title, tip_contents, tip_like_cnt, tip_create_at, tip_delete_at
+		select tip_id, tip_title, tip_contents, user_id, tip_view_cnt, tip_like_cnt, tip_create_at, tip_delete_at
 		from tips 
 		<if test="word != null and word != ''">
 			where tip_title like concat('%', #{word}, '%') 

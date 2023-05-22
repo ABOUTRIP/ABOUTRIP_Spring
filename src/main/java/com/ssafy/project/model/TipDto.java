@@ -20,28 +20,28 @@ public class TipDto {
 	private String tipContents;
 	
 	@ApiModelProperty(value = "조회수")
-	private int noticeViewCnt;
+	private int tipViewCnt;
 	
 	@ApiModelProperty(value = "추천수")
-	private int noticeLikeCnt;
+	private int tipLikeCnt;
 	
 	@ApiModelProperty(value = "작성일")
-	private String noticeCreateAt;
+	private String tipCreateAt;
 	
 	@ApiModelProperty(value = "삭제일")
-	private String noticeDeleteAt;
+	private String tipDeleteAt;
 
-	public TipDto(int tipId, String userId, String tipTitle, String tipContents, int noticeViewCnt, int noticeLikeCnt,
-			String noticeCreateAt, String noticeDeleteAt) {
+	public TipDto(int tipId, String userId, String tipTitle, String tipContents, int tipViewCnt, int tipLikeCnt,
+			String tipCreateAt, String tipDeleteAt) {
 		super();
 		this.tipId = tipId;
 		this.userId = userId;
 		this.tipTitle = tipTitle;
 		this.tipContents = tipContents;
-		this.noticeViewCnt = noticeViewCnt;
-		this.noticeLikeCnt = noticeLikeCnt;
-		this.noticeCreateAt = noticeCreateAt;
-		this.noticeDeleteAt = noticeDeleteAt;
+		this.tipViewCnt = tipViewCnt;
+		this.tipLikeCnt = tipLikeCnt;
+		this.tipCreateAt = tipCreateAt;
+		this.tipDeleteAt = tipDeleteAt;
 	}
 
 	public int getTipId() {
@@ -76,42 +76,42 @@ public class TipDto {
 		this.tipContents = tipContents;
 	}
 
-	public int getNoticeViewCnt() {
-		return noticeViewCnt;
+	public int getTipViewCnt() {
+		return tipViewCnt;
 	}
 
-	public void setNoticeViewCnt(int noticeViewCnt) {
-		this.noticeViewCnt = noticeViewCnt;
+	public void setTipViewCnt(int tipViewCnt) {
+		this.tipViewCnt = tipViewCnt;
 	}
 
-	public int getNoticeLikeCnt() {
-		return noticeLikeCnt;
+	public int getTipLikeCnt() {
+		return tipLikeCnt;
 	}
 
-	public void setNoticeLikeCnt(int noticeLikeCnt) {
-		this.noticeLikeCnt = noticeLikeCnt;
+	public void setTipLikeCnt(int tipLikeCnt) {
+		this.tipLikeCnt = tipLikeCnt;
 	}
 
-	public String getNoticeCreateAt() {
-		return noticeCreateAt;
+	public String getTipCreateAt() {
+		return tipCreateAt;
 	}
 
-	public void setNoticeCreateAt(String noticeCreateAt) {
-		this.noticeCreateAt = noticeCreateAt;
+	public void setTipCreateAt(String tipCreateAt) {
+		this.tipCreateAt = tipCreateAt;
 	}
 
-	public String getNoticeDeleteAt() {
-		return noticeDeleteAt;
+	public String getTipDeleteAt() {
+		return tipDeleteAt;
 	}
 
-	public void setNoticeDeleteAt(String noticeDeleteAt) {
-		this.noticeDeleteAt = noticeDeleteAt;
+	public void setTipDeleteAt(String tipDeleteAt) {
+		this.tipDeleteAt = tipDeleteAt;
 	}
 
 	@Override
 	public String toString() {
 		return "TipDto [tipId=" + tipId + ", userId=" + userId + ", tipTitle=" + tipTitle + ", tipContents="
-				+ tipContents + ", noticeViewCnt=" + noticeViewCnt + ", noticeLikeCnt=" + noticeLikeCnt
-				+ ", noticeCreateAt=" + noticeCreateAt + ", noticeDeleteAt=" + noticeDeleteAt + "]";
+				+ tipContents + ", tipViewCnt=" + tipViewCnt + ", tipLikeCnt=" + tipLikeCnt
+				+ ", tipCreateAt=" + tipCreateAt + ", tipDeleteAt=" + tipDeleteAt + "]";
 	}
 }
