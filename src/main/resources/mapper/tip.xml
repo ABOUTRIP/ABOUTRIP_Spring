@@ -26,7 +26,7 @@
 	</insert>
 	
 	<!--  -->
-	<select id="listTip" parameterType="map" resultType="tipDto" resultMap="tip">
+	<select id="listTip" parameterType="map" resultMap="tip">
 		select tip_id, tip_title, tip_contents, user_id, tip_view_cnt, tip_like_cnt, tip_create_at, tip_delete_at
 		from tips 
 		<if test="word != null and word != ''">
@@ -55,8 +55,8 @@
 	</update>
 		
 	<select id="getTip" parameterType="int"
-		resultType="TipDto">
-		select *
+		resultMap="tip">
+		select tip_id, tip_title, tip_contents, user_id, tip_view_cnt, tip_like_cnt, tip_create_at, tip_delete_at
 		from tips
 		where tip_id = #{tipId}
 	</select>
