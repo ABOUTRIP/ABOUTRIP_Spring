@@ -14,15 +14,24 @@
 //	public void deleteMemo(int articleno) throws SQLException;
 	void deleteNotice(int noticeId) throws SQLException;
  -->
- 
+ 	
+ 	 <resultMap type="noticeDto" id="notice">
+		<result column="notice_id" property="noticeId"/>
+		<result column="notice_title" property="noticeTitle"/>
+		<result column="notice_contents" property="noticeContents"/>
+		<result column="user_id" property="userId"/>
+		<result column="notice_create_at" property="noticeCreateAt"/>
+		<result column="notice_delete_at" property="noticeDeleteAt"/>
+	</resultMap>
+ 	
  	<insert id="writeNotice" parameterType="noticeDto">
 		insert into notices (user_id, notice_title, notice_contents)
 		values (#{userId}, #{noticeTitle}, #{noticeContents})
 	</insert>
 	
 	<!--  -->
-	<select id="listNotice" parameterType="map" resultType="noticeDto">
-		select notice_id, user_id, notice_title, notice_contents, notice_create_at, notice_delete_at
+	<select id="listNotice" parameterType="map" resultMap="notice">
+		select *
 		from notices 
 		<if test="word != null and word != ''">
 			where notice_title like concat('%', #{word}, '%') 
@@ -44,7 +53,7 @@
 	
 		
 	<select id="getNotice" parameterType="int"
-		resultType="NoticeDto">
+		resultMap="notice">
 		select *
 		from notices
 		where notice_id = #{noticeId}
