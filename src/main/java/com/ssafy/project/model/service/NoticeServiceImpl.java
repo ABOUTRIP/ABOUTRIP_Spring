@@ -70,7 +70,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	@Transactional
 	public boolean deleteNotice(int noticeId) throws Exception {
-		sqlSession.getMapper(NoticeMapper.class).deleteNotice(noticeId);
+//		sqlSession.getMapper(NoticeMapper.class).deleteNotice(noticeId);
 		return sqlSession.getMapper(NoticeMapper.class).deleteNotice(noticeId) == 1;
 	}
 	
