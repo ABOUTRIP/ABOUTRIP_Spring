@@ -8,13 +8,25 @@
 	void updateHit(int tipId) throws SQLException;
  -->
  
+ 	<resultMap type="tipDto" id="tip">
+		<result column="tip_id" property="tipId"/>
+		<result column="tip_title" property="tipTitle"/>
+		<result column="tip_contents" property="tipContents"/>
+		<result column="user_id" property="userId"/>
+		<result column="tip_view_cnt" property="tipViewCnt"/>
+		<result column="tip_like_cnt" property="tipLikeCnt"/>
+		<result column="tip_create_at" property="tipCreateAt"/>
+		<result column="tip_delete_at" property="tipDeleteAt"/>
+	</resultMap>
+	
+ 
  	<insert id="writeTip" parameterType="tipDto">
 		insert into tips (user_id, tip_title, tip_contents)
 		values (#{userId}, #{tipTitle}, #{tipContents})
 	</insert>
 	
 	<!--  -->
-	<select id="listTip" parameterType="map" resultType="tipDto">
+	<select id="listTip" parameterType="map" resultType="tipDto" resultMap="tip">
 		select tip_id, tip_title, tip_contents, user_id, tip_view_cnt, tip_like_cnt, tip_create_at, tip_delete_at
 		from tips 
 		<if test="word != null and word != ''">
@@ -38,7 +50,7 @@
 	
 	<update id="updateHit" parameterType="int">
 		update tips
-		set tip_like_cnt = tip_like_cnt + 1
+		set tip_view_cnt = tip_view_cnt + 1
 		where tip_id = #{tipId}
 	</update>
 		
