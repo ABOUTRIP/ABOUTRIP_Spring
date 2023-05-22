@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.project.model.mapper.HotplaceMapper">
+
+<!-- 
+	void updateHit(int hotplaceId) throws SQLException;
+ -->
+ 
+  	<resultMap type="hotplaceDto" id="hotplace">
+		<result column="hotplace_id" property="hotplaceId"/>
+		<result column="hotplace_name" property="hotplaceName"/>
+		<result column="hotplace_description" property="hotplaceDescription"/>
+		<result column="user_id" property="userId"/>
+		<result column="hotplace_status" property="hotplaceStatus"/>
+		<result column="hotplace_like_cnt" property="hotplaceLikeCnt"/>
+		<result column="hotplace_create_at" property="hotplaceCreateAt"/>
+		<result column="hotplace_delete_at" property="hotplaceDeleteAt"/>
+		<result column="img" property="img"/>
+	</resultMap>
+ 
+ 	<insert id="writeHotplace" parameterType="hotplaceDto">
+		insert into hotplaces (user_id, hotplace_name, hotplace_description, img)
+		values (#{userId}, #{hotplaceName}, #{hotplaceDescription}, #{img})
+	</insert>
+	
+	<!--  -->
+	<select id="listHotplace" parameterType="map" resultMap="hotplace">
+		select *
+		from hotplaces
+		<where>
+			<if test="#{id} != 'admin'">
+            	and (hotplace_status = 1 or user_id = #{user_id})
+        	</if>
+			<if test="word != null and word != ''">
+				and (hotplace_name like concat('%', #{word}, '%') 
+				or hotplace_description like concat('%', #{word}, '%'))
+			</if> 
+		</where> 
+
+		order by hotplace_id desc
+		limit #{start}, #{spp}
+	</select>
+	
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(hotplace_id) 
+		from hotplaces 
+		<if test="word != null and word != ''"> 
+			where hotplace_name like concat('%', #{word}, '%') 
+			or hotplace_description like concat('%', #{word}, '%') 
+		</if>
+	</select>
+	
+	
+	<update id="updateHit" parameterType="int">
+		update hotplaces
+		set hotplace_like_cnt = hotplace_like_cnt + 1
+		where hotplace_id = #{hotplaceId}
+	</update>
+		
+	<select id="getHotplace" parameterType="int"
+		resultMap="hotplace">
+		select *
+		from hotplaces
+		where hotplace_id = #{hotplaceId}
+	</select>
+	
+	<update id="modifyHotplace" parameterType="hotplaceDto">
+		update hotplaces
+		set hotplace_name = #{hotplaceName}, hotplace_description = #{hotplaceDescription}
+		where hotplace_id = #{hotplaceId}
+	</update>
+	
+	<delete id="deleteHotplace" parameterType="int">
+		delete from hotplaces
+		where hotplace_id = #{hotplaceId}
+	</delete>
+</mapper>	

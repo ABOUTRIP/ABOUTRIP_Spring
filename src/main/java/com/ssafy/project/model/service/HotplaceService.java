@@ -1,0 +1,18 @@
+package com.ssafy.project.model.service;
+
+import java.util.List;
+
+import com.ssafy.project.model.BoardParameterDto;
+import com.ssafy.project.model.HotplaceDto;
+import com.ssafy.project.util.PageNavigation;
+
+public interface HotplaceService {
+	public boolean writeHotplace(HotplaceDto hotplaceDto) throws Exception;
+	public List<HotplaceDto> listHotplace(BoardProperty boardProperty) throws Exception;
+	public PageNavigation makePageNavigation(BoardParameterDto hotplaceParameterDto) throws Exception;
+	
+	public HotplaceDto getHotplace(int hotplaceno) throws Exception;
+	public void updateHit(int hotplaceno) throws Exception;
+	public boolean modifyHotplace(HotplaceDto hotplaceDto) throws Exception;
+	public boolean deleteHotplace(int hotplaceno) throws Exception;
+}

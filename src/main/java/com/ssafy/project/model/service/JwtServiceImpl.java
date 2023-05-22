@@ -147,4 +147,17 @@ public class JwtServiceImpl implements JwtService {
 		return (String) this.get("user").get("userid");
 	}
 
+	@Override
+	public String extractIdFromJwt(String jwt) {
+        // JWT 디코딩
+        Claims claims = Jwts.parser()
+                .setSigningKey("yourSecretKey") // JWT의 서명 키를 설정해야 합니다.
+                .parseClaimsJws(jwt)
+                .getBody();
+        
+        // ID 추출
+        String id = claims.get("id", String.class); // "id"는 JWT 페이로드의 필드 이름입니다.
+        
+        return id;
+	}
 }

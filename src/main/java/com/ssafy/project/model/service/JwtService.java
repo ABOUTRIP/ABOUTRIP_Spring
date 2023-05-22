@@ -10,5 +10,6 @@ public interface JwtService {
 	Map<String, Object> get(String key);
 	String getUserId();
 	boolean checkToken(String jwt);
+	String extractIdFromJwt(String jwt);
 	
 }
