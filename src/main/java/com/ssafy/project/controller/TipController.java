@@ -63,7 +63,7 @@ public class TipController {
 	public ResponseEntity<?> getTip(
 			@PathVariable("tipno") @ApiParam(value = "얻어올 글의 글번호.", required = true) int tipno) throws Exception {
 		logger.info("getTip - 호출 : " + tipno);
-		tipService.updateHit(tipno);
+//		tipService.updateHit(tipno);
 //		return new ResponseEntity<TipDto>(tipService.getTip(tipno), HttpStatus.OK);		
 		if (tipService.getTip(tipno) != null) {
 			tipService.updateHit(tipno);
