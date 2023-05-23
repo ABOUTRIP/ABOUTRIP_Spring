@@ -66,7 +66,7 @@ public class TipController {
 //		tipService.updateHit(tipno);
 //		return new ResponseEntity<TipDto>(tipService.getTip(tipno), HttpStatus.OK);		
 		if (tipService.getTip(tipno) != null) {
-			tipService.updateHit(tipno);
+//			tipService.updateHit(tipno);
 			return new ResponseEntity<TipDto>(tipService.getTip(tipno), HttpStatus.OK);	
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
