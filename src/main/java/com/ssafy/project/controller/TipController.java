@@ -94,5 +94,41 @@ public class TipController {
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
-
+	
+	@ApiOperation(value = "게시판 글추천", notes = "추천할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@PostMapping("/like")
+	public ResponseEntity<String> likeTip(
+			@RequestBody @ApiParam(value = "수정할 글정보 (글번호만 포함)", required = true) TipDto tipDto) throws Exception {
+		logger.info("likeTip - 호출 {}", tipDto);
+		
+		if (tipService.updateLike(tipDto.getTipId()) == true) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+		
+		
+//		if (tipService.updateLike(tipDto)) {
+//			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+//		}
+//		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "게시판 글조회", notes = "조회할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@PostMapping("/hit")
+	public ResponseEntity<String> hitTip(
+			@RequestBody @ApiParam(value = "조회할 글정보 (글번호만 포함)", required = true) TipDto tipDto) throws Exception {
+		logger.info("hitTip - 호출 {}", tipDto);
+		
+		if (tipService.updateHit(tipDto.getTipId())) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+	
+	private ResponseEntity<String> exceptionHandling(Exception e) {
+		e.printStackTrace();
+		return new ResponseEntity<String>("Error : " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

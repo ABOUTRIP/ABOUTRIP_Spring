@@ -11,7 +11,8 @@ public interface TipMapper {
 	public List<TipDto> listTip(BoardParameterDto boardParameterDto) throws SQLException;
 	public int getTotalCount(BoardParameterDto boardParameterDto) throws SQLException;
 	public TipDto getTip(int tipno) throws SQLException;
-	public void updateHit(int tipno) throws SQLException;
+	public int updateHit(int tipno) throws SQLException;
+	public int updateLike(int tipno) throws SQLException;
 	public int modifyTip(TipDto tipDto) throws SQLException;
 //	public void deleteMemo(int tipno) throws SQLException;
 	public int deleteTip(int tipno) throws SQLException;

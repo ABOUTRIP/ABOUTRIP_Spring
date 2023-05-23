@@ -48,9 +48,15 @@
 	</select>
 	
 	
-	<update id="updateHit" parameterType="int">
+	<update id="updateHit" parameterType="tipDto">
 		update tips
 		set tip_view_cnt = tip_view_cnt + 1
+		where tip_id = #{tipId}
+	</update>
+	
+	<update id="updateLike" parameterType="tipDto">
+		update tips
+		set tip_like_cnt = tip_like_cnt + 1
 		where tip_id = #{tipId}
 	</update>
 		

@@ -12,7 +12,8 @@ public interface TipService {
 	public PageNavigation makePageNavigation(BoardParameterDto tipParameterDto) throws Exception;
 	
 	public TipDto getTip(int tipno) throws Exception;
-	public void updateHit(int tipno) throws Exception;
+	public boolean updateHit(int tipno) throws Exception;
+	public boolean updateLike(int tipno) throws Exception;
 	public boolean modifyTip(TipDto tipDto) throws Exception;
 	public boolean deleteTip(int tipno) throws Exception;
 }

@@ -57,10 +57,17 @@ public class TipServiceImpl implements TipService {
 	}
 	
 	@Override
-	public void updateHit(int tipno) throws Exception {
-		sqlSession.getMapper(TipMapper.class).updateHit(tipno);
+	@Transactional
+	public boolean updateHit(int tipno) throws Exception {
+		return sqlSession.getMapper(TipMapper.class).updateHit(tipno) == 1;
 	}
-
+	
+	@Override
+	@Transactional
+	public boolean updateLike(int tipno) throws Exception {
+		return sqlSession.getMapper(TipMapper.class).updateLike(tipno) == 1;
+	}
+	
 	@Override
 	@Transactional
 	public boolean modifyTip(TipDto tipDto) throws Exception {
@@ -73,6 +80,8 @@ public class TipServiceImpl implements TipService {
 //		sqlSession.getMapper(TipMapper.class).deleteTip(tipId);
 		return sqlSession.getMapper(TipMapper.class).deleteTip(tipId) == 1;
 	}
+
+
 	
 	
 	
