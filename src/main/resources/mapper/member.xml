@@ -69,10 +69,16 @@
 		where user_id = #{userId}
 	</update>
 
-	<delete id="deleteMember" parameterType="String">
+<!-- 	<delete id="deleteMember" parameterType="String">
 		delete from members
 		where user_id = #{userId}
-	</delete>
+	</delete> -->
+	
+	<update id="deleteMember" parameterType="String">
+		update members
+		set delete_at = now()
+		where user_id = #{userId}
+	</update>
 	
 	
 	<!-- login, token -->

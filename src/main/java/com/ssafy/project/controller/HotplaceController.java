@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.project.model.BoardParameterDto;
 import com.ssafy.project.model.HotplaceDto;
-import com.ssafy.project.model.service.BoardProperty;
 import com.ssafy.project.model.service.HotplaceService;
 import com.ssafy.project.model.service.JwtService;
 import com.ssafy.project.model.service.JwtServiceImpl;
@@ -28,6 +28,7 @@ import com.ssafy.project.model.service.JwtServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.models.media.MediaType;
 
 //http://localhost:9999/vue/swagger-ui.html
 //@CrossOrigin(origins = { "*" }, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.POST} , maxAge = 6000)
@@ -46,25 +47,54 @@ public class HotplaceController {
 	
 	JwtService jwtService = new JwtServiceImpl();
 
-	@ApiOperation(value = "게시판 글작성", notes = "새로운 게시글 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-	@PostMapping
-	public ResponseEntity<String> writeHotplace(
-			@RequestBody @ApiParam(value = "게시글 정보.", required = true) HotplaceDto hotplaceDto) throws Exception {
-		logger.info("writeHotplace - 호출");
-		if (hotplaceService.writeHotplace(hotplaceDto)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+//	@ApiOperation(value = "게시판 글작성", notes = "새로운 게시글 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+//	@PostMapping
+//	public ResponseEntity<String> writeHotplace(
+//			@RequestBody @ApiParam(value = "게시글 정보.", required = true) HotplaceDto hotplaceDto) throws Exception {
+//		logger.info("writeHotplace - 호출");
+//		if (hotplaceService.writeHotplace(hotplaceDto)) {
+//			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+//		}
+//		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+//	}
+	
+	@ApiOperation(value = "게시판 글작성", notes = "새로운 게시글 정보와 파일을 함께 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@PostMapping(value = "/write", consumes = { "application/json", "multipart/form-data" })
+	public ResponseEntity<String> writeHotplaceWithFile(
+	        @RequestPart(value = "file") MultipartFile file,
+	        @RequestBody @ApiParam(value = "게시글 정보.", required = true) HotplaceDto hotplaceDto) throws Exception {
+	    logger.info("writeHotplaceWithFile - 호출");
+
+	    // 파일 업로드 처리
+	    if (!file.isEmpty()) {
+	        byte[] fileData = file.getBytes();
+	        // 파일 저장 로직 추가
+	        hotplaceDto.setImg(fileData);
+	    }
+
+	    // 게시글 작성 처리
+	    if (hotplaceService.writeHotplace(hotplaceDto)) {
+	        return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+	    }
+	    return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
+
 
 	@ApiOperation(value = "게시판 글목록", notes = "모든 게시글의 정보를 반환한다.", response = List.class)
 	@GetMapping
-	public ResponseEntity<List<HotplaceDto>> listHotplace(@ApiParam(value = "게시글을 얻기위한 부가정보.", required = true) BoardParameterDto boardParameterDto,
-														@ApiParam(value = "ID", required = true) @RequestHeader("Authorization") String token) throws Exception {
+	public ResponseEntity<List<HotplaceDto>> listHotplace(@ApiParam(value = "게시글을 얻기위한 부가정보.", required = true) BoardParameterDto boardParameterDto
+														) throws Exception {
 		logger.info("listHotplace - 호출");
-		String id = jwtService.extractIdFromJwt(token);
-		BoardProperty boardProperty = new BoardProperty(boardParameterDto, id);
-		return new ResponseEntity<List<HotplaceDto>>(hotplaceService.listHotplace(boardProperty), HttpStatus.OK);
+//		String id = jwtService.extractIdFromJwt(token);
+//		Jws<Claims> jws = Jwts.parser().parseClaimsJws(token);
+//		Claims claims = jws.getBody();
+//		String id = claims.getSubject();
+		
+//		Claims claims = Jwts.parser().parseClaimsJws(token).getBody();
+//		String id = claims.get("userid", String.class);
+		
+//		BoardProperty boardProperty = new BoardProperty(board);
+		return new ResponseEntity<List<HotplaceDto>>(hotplaceService.listHotplace(boardParameterDto), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "게시판 글보기", notes = "글번호에 해당하는 게시글의 정보를 반환한다.", response = HotplaceDto.class)

@@ -16,10 +16,20 @@ public class BoardParameterDto {
 //	private String key;
 	@ApiModelProperty(value = "검색어")
 	private String word;
+	@ApiModelProperty(value = "관리자인지 확인하기 위한 id (admin/그 외/빈 칸 - 세 개의 선택지)")
+	private String idCheck; 
 	
 	public BoardParameterDto() {
 		pg = 1;
 		spp = 20;
+	}
+	
+	public String getIdCheck() {
+		return idCheck;
+	}
+
+	public void setIdCheck(String idCheck) {
+		this.idCheck = idCheck;
 	}
 
 	public int getPg() {

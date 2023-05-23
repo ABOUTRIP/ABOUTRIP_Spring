@@ -35,10 +35,10 @@ public class HotplaceDto {
 	private String hotplaceDeleteAt;
 	
 	@ApiModelProperty(value = "이미지")
-	private String img;
+	private byte[] img;
 
 	public HotplaceDto(int hotplaceId, String userId, String hotplaceName, String hotplaceDescription,
-			int hotplaceStatus, int hotplaceLikeCnt, String hotplaceCreateAt, String hotplaceDeleteAt, String img) {
+			int hotplaceStatus, int hotplaceLikeCnt, String hotplaceCreateAt, String hotplaceDeleteAt, byte[] img) {
 		super();
 		this.hotplaceId = hotplaceId;
 		this.userId = userId;
@@ -115,11 +115,11 @@ public class HotplaceDto {
 		this.hotplaceDeleteAt = hotplaceDeleteAt;
 	}
 
-	public String getImg() {
+	public byte[] getImg() {
 		return img;
 	}
 
-	public void setImg(String img) {
+	public void setImg(byte[] img) {
 		this.img = img;
 	}
 

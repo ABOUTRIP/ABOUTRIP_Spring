@@ -27,10 +27,10 @@ public class HotplaceServiceImpl implements HotplaceService {
 	}
 
 	@Override
-	public List<HotplaceDto> listHotplace(BoardProperty boardProperty) throws Exception {
-		int start = boardProperty.boardParameterDto.getPg() == 0 ? 0 : (boardProperty.boardParameterDto.getPg() - 1) * boardProperty.boardParameterDto.getSpp();
-		boardProperty.boardParameterDto.setStart(start);
-		return sqlSession.getMapper(HotplaceMapper.class).listHotplace(boardProperty);
+	public List<HotplaceDto> listHotplace(BoardParameterDto boardParameterDto) throws Exception {
+		int start = boardParameterDto.getPg() == 0 ? 0 : (boardParameterDto.getPg() - 1) * boardParameterDto.getSpp();
+		boardParameterDto.setStart(start);
+		return sqlSession.getMapper(HotplaceMapper.class).listHotplace(boardParameterDto);
 	}
 
 	@Override
