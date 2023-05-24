@@ -26,12 +26,12 @@
 	</insert>
 	
 	<!--  -->
-	<select id="listHotplace" parameterType="map" resultMap="hotplace">
+	<select id="listHotplace" parameterType="map" resultMap="hotplace"> <!-- boardProperty로 변경도 해볼 것 -->
 		select *
 		from hotplaces
 		<where>
-			<if test="#{id} != 'admin'">
-            	and (hotplace_status = 1 or user_id = #{user_id})
+			<if test="#{idCheck} != 'admin'"> 
+            	and (hotplace_status = 1 or user_id = #{idCheck})
         	</if>
 			<if test="word != null and word != ''">
 				and (hotplace_name like concat('%', #{word}, '%') 
@@ -78,3 +78,4 @@
 		where hotplace_id = #{hotplaceId}
 	</delete>
 </mapper>	
+

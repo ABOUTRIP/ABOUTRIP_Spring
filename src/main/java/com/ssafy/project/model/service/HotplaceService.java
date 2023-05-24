@@ -8,7 +8,7 @@ import com.ssafy.project.util.PageNavigation;
 
 public interface HotplaceService {
 	public boolean writeHotplace(HotplaceDto hotplaceDto) throws Exception;
-	public List<HotplaceDto> listHotplace(BoardProperty boardProperty) throws Exception;
+	public List<HotplaceDto> listHotplace(BoardParameterDto boardParameterDto) throws Exception;
 	public PageNavigation makePageNavigation(BoardParameterDto hotplaceParameterDto) throws Exception;
 	
 	public HotplaceDto getHotplace(int hotplaceno) throws Exception;
