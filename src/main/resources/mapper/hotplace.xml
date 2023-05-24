@@ -30,9 +30,9 @@
 		select *
 		from hotplaces
 		<where>
-			<if test="#{idCheck} != 'admin'"> 
+<!-- 			<if test="#{idCheck} != 'admin'"> 
             	and (hotplace_status = 1 or user_id = #{idCheck})
-        	</if>
+        	</if> -->
 			<if test="word != null and word != ''">
 				and (hotplace_name like concat('%', #{word}, '%') 
 				or hotplace_description like concat('%', #{word}, '%'))

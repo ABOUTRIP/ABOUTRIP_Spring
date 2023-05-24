@@ -51,6 +51,10 @@ public class HotplaceDto {
 		this.img = img;
 	}
 
+	public HotplaceDto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getHotplaceId() {
 		return hotplaceId;
 	}

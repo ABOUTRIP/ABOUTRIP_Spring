@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +29,6 @@ import com.ssafy.project.model.service.JwtServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.v3.oas.models.media.MediaType;
 
 //http://localhost:9999/vue/swagger-ui.html
 //@CrossOrigin(origins = { "*" }, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.POST} , maxAge = 6000)
@@ -59,17 +59,30 @@ public class HotplaceController {
 //	}
 	
 	@ApiOperation(value = "게시판 글작성", notes = "새로운 게시글 정보와 파일을 함께 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-	@PostMapping(value = "/write", consumes = { "application/json", "multipart/form-data" })
+	@PostMapping(value = "/write")
+//	@ApiImplicitParams({
+//	    @ApiImplicitParam(name = "file", value = "업로드할 파일", required = true, dataType = "__file", paramType = "form")
+//	})
 	public ResponseEntity<String> writeHotplaceWithFile(
-	        @RequestPart(value = "file") MultipartFile file,
-	        @RequestBody @ApiParam(value = "게시글 정보.", required = true) HotplaceDto hotplaceDto) throws Exception {
+	        @RequestPart(value = "file", required = false) MultipartFile file,
+	        @RequestParam String userId, @RequestParam String hotplaceName, @RequestParam String hotplaceDescription) throws Exception {
 	    logger.info("writeHotplaceWithFile - 호출");
-
+	    
+	    HotplaceDto hotplaceDto = new HotplaceDto();
+	    hotplaceDto.setUserId(userId);
+	    hotplaceDto.setHotplaceName(hotplaceName);
+	    hotplaceDto.setHotplaceDescription(hotplaceDescription);
 	    // 파일 업로드 처리
-	    if (!file.isEmpty()) {
-	        byte[] fileData = file.getBytes();
-	        // 파일 저장 로직 추가
-	        hotplaceDto.setImg(fileData);
+	    if (file != null) {
+	        if (!file.isEmpty()) {
+	            try {
+	                byte[] fileData = file.getBytes();
+	                // 파일 저장 로직 추가
+	                hotplaceDto.setImg(fileData);
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
 	    }
 
 	    // 게시글 작성 처리
