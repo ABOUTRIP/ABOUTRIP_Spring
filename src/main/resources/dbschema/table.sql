@@ -148,15 +148,12 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`favorite` (
   `user_id` VARCHAR(16) NOT NULL,
   `content_id` INT NOT NULL,
   PRIMARY KEY (`favorite_id`),
-  INDEX `favorite_to_attraction_info_content_id_fk_idx` (`content_id` ASC) VISIBLE,
   INDEX `favorite_to_members_user_id_fk_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `favorite_to_attraction_info_content_id_fk`
-    FOREIGN KEY (`content_id`)
-    REFERENCES `enjoytrip`.`attraction_info` (`content_id`),
   CONSTRAINT `favorite_to_members_user_id_fk`
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -168,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`hotplaces` (
   `hotplace_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` VARCHAR(16) NOT NULL,
   `hotplace_name` VARCHAR(45) NOT NULL,
-  `hotplace_description` VARCHAR(1000) NOT NULL,
+  `hotplace_description` VARCHAR(3000) NOT NULL,
   `hotplace_status` INT NOT NULL DEFAULT '0',
   `hotplace_like_cnt` INT NOT NULL DEFAULT '0',
   `hotplace_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -181,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`hotplaces` (
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
