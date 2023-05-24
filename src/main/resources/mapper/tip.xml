@@ -77,4 +77,11 @@
 		delete from tips
 		where tip_id = #{tipId}
 	</delete>
+	
+	<select id="listMyTip" parameterType="string" resultMap="tip">
+		select *
+		from tips
+		where user_id = #{user_id}
+	</select> 
+	
 </mapper>	

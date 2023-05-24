@@ -150,4 +150,6 @@ public class MemberController {
 		response.put("Authorization", authorizationHeaderValue);
 		return ResponseEntity.ok(response);
 	}
+	
+	
 }

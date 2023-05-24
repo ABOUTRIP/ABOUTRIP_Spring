@@ -112,5 +112,5 @@
 		set token = #{token, jdbcType=VARCHAR}
 		where user_id = #{userId}
 	</update>
-
+	
 </mapper>
