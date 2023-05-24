@@ -1,5 +1,6 @@
 package com.ssafy.project.model.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ssafy.project.model.BoardParameterDto;
 import com.ssafy.project.model.HotplaceDto;
 import com.ssafy.project.model.mapper.HotplaceMapper;
+import com.ssafy.project.model.mapper.TipMapper;
 import com.ssafy.project.util.PageNavigation;
 
 @Service
@@ -72,6 +74,11 @@ public class HotplaceServiceImpl implements HotplaceService {
 	public boolean deleteHotplace(int hotplaceId) throws Exception {
 //		sqlSession.getMapper(HotplaceMapper.class).deleteHotplace(hotplaceId);
 		return sqlSession.getMapper(HotplaceMapper.class).deleteHotplace(hotplaceId) == 1;
+	}
+
+	@Override
+	public List<HotplaceDto> listMyHotplace(String userid) throws SQLException {
+		return sqlSession.getMapper(HotplaceMapper.class).listMyHotplace(userid);
 	}
 	
 	

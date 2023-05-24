@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.project.model.BoardParameterDto;
 import com.ssafy.project.model.HotplaceDto;
+import com.ssafy.project.model.TipDto;
 import com.ssafy.project.model.service.HotplaceService;
 import com.ssafy.project.model.service.JwtService;
 import com.ssafy.project.model.service.JwtServiceImpl;
@@ -64,7 +65,7 @@ public class HotplaceController {
 //	    @ApiImplicitParam(name = "file", value = "업로드할 파일", required = true, dataType = "__file", paramType = "form")
 //	})
 	public ResponseEntity<String> writeHotplaceWithFile(
-	        @RequestPart(value = "file", required = false) MultipartFile file,
+	        @RequestPart(value = "file", required = false) MultipartFile  file,
 	        @RequestParam String userId, @RequestParam String hotplaceName, @RequestParam String hotplaceDescription, @RequestParam String hotplaceAddress) throws Exception {
 	    logger.info("writeHotplaceWithFile - 호출");
 	    
@@ -188,5 +189,13 @@ public class HotplaceController {
 		logger.info("likeHotplace - 호출 {}", hotplaceno);
 		hotplaceService.updateHit(hotplaceno);
 	}
+	
+	@ApiOperation(value = "myhotplace 목록", notes = "myhotplace의 정보를 반환한다.", response = List.class)
+	@GetMapping("/myhotplace")
+	public ResponseEntity<List<HotplaceDto>> listMyHotplace(@ApiParam(value = "myhotplace을 얻기위한 부가정보.", required = true)String userid) throws Exception {
+		logger.info("listMyHotplace - 호출");
+		return new ResponseEntity<List<HotplaceDto>>(hotplaceService.listMyHotplace(userid), HttpStatus.OK);
+	}
+	
 }
 

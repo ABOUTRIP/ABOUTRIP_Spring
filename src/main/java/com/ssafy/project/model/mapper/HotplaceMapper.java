@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.ssafy.project.model.BoardParameterDto;
 import com.ssafy.project.model.HotplaceDto;
-import com.ssafy.project.model.service.BoardProperty;
 
 public interface HotplaceMapper {
 	public int writeHotplace(HotplaceDto hotplaceDto) throws SQLException;
@@ -16,4 +15,5 @@ public interface HotplaceMapper {
 	public int modifyHotplace(HotplaceDto hotplaceDto) throws SQLException;
 //	public void deleteMemo(int hotplaceno) throws SQLException;
 	public int deleteHotplace(int hotplaceno) throws SQLException;
+	public List<HotplaceDto> listMyHotplace(String userid) throws SQLException;
 }
