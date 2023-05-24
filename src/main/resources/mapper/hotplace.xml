@@ -18,11 +18,12 @@
 		<result column="hotplace_create_at" property="hotplaceCreateAt"/>
 		<result column="hotplace_delete_at" property="hotplaceDeleteAt"/>
 		<result column="img" property="img"/>
+		<result column="hotplace_address" property="hotplaceAddress"/>
 	</resultMap>
  
  	<insert id="writeHotplace" parameterType="hotplaceDto">
-		insert into hotplaces (user_id, hotplace_name, hotplace_description, img)
-		values (#{userId}, #{hotplaceName}, #{hotplaceDescription}, #{img})
+		insert into hotplaces (user_id, hotplace_name, hotplace_description, hotplace_address, img)
+		values (#{userId}, #{hotplaceName}, #{hotplaceDescription}, #{hotplaceAddress}, #{img})
 	</insert>
 	
 	<!--  -->

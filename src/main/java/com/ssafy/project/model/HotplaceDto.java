@@ -36,9 +36,17 @@ public class HotplaceDto {
 	
 	@ApiModelProperty(value = "이미지")
 	private byte[] img;
+	
+	@ApiModelProperty(value = "주소")
+	private String hotplaceAddress;
+	
+	public HotplaceDto() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public HotplaceDto(int hotplaceId, String userId, String hotplaceName, String hotplaceDescription,
-			int hotplaceStatus, int hotplaceLikeCnt, String hotplaceCreateAt, String hotplaceDeleteAt, byte[] img) {
+			int hotplaceStatus, int hotplaceLikeCnt, String hotplaceCreateAt, String hotplaceDeleteAt, byte[] img,
+			String hotplaceAddress) {
 		super();
 		this.hotplaceId = hotplaceId;
 		this.userId = userId;
@@ -49,10 +57,15 @@ public class HotplaceDto {
 		this.hotplaceCreateAt = hotplaceCreateAt;
 		this.hotplaceDeleteAt = hotplaceDeleteAt;
 		this.img = img;
+		this.hotplaceAddress = hotplaceAddress;
 	}
 
-	public HotplaceDto() {
-		// TODO Auto-generated constructor stub
+	public String getHotplaceAddress() {
+		return hotplaceAddress;
+	}
+
+	public void setHotplaceAddress(String hotplaceAddress) {
+		this.hotplaceAddress = hotplaceAddress;
 	}
 
 	public int getHotplaceId() {
@@ -132,7 +145,8 @@ public class HotplaceDto {
 		return "HotplaceDto [hotplaceId=" + hotplaceId + ", userId=" + userId + ", hotplaceName=" + hotplaceName
 				+ ", hotplaceDescription=" + hotplaceDescription + ", hotplaceStatus=" + hotplaceStatus
 				+ ", hotplaceLikeCnt=" + hotplaceLikeCnt + ", hotplaceCreateAt=" + hotplaceCreateAt
-				+ ", hotplaceDeleteAt=" + hotplaceDeleteAt + ", img=" + img + "]";
+				+ ", hotplaceDeleteAt=" + hotplaceDeleteAt + ", img=" + img + ", hotplaceAddress=" + hotplaceAddress
+				+ "]";
 	}
 
 }

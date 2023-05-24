@@ -174,6 +174,7 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`hotplaces` (
   `hotplace_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hotplace_delete_at` TIMESTAMP NULL DEFAULT NULL,
   `img` LONGBLOB NULL DEFAULT NULL,
+  `hotplace_address` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`hotplace_id`),
   INDEX `hotplaces_to_user_user_id_fk_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `hotplaces_to_members_user_id_fk`

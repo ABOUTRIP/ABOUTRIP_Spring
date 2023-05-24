@@ -65,13 +65,14 @@ public class HotplaceController {
 //	})
 	public ResponseEntity<String> writeHotplaceWithFile(
 	        @RequestPart(value = "file", required = false) MultipartFile file,
-	        @RequestParam String userId, @RequestParam String hotplaceName, @RequestParam String hotplaceDescription) throws Exception {
+	        @RequestParam String userId, @RequestParam String hotplaceName, @RequestParam String hotplaceDescription, @RequestParam String hotplaceAddress) throws Exception {
 	    logger.info("writeHotplaceWithFile - 호출");
 	    
 	    HotplaceDto hotplaceDto = new HotplaceDto();
 	    hotplaceDto.setUserId(userId);
 	    hotplaceDto.setHotplaceName(hotplaceName);
 	    hotplaceDto.setHotplaceDescription(hotplaceDescription);
+	    hotplaceDto.setHotplaceAddress(hotplaceAddress);
 	    // 파일 업로드 처리
 	    if (file != null) {
 	        if (!file.isEmpty()) {
