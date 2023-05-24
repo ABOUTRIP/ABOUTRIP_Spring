@@ -94,6 +94,39 @@ public class HotplaceController {
 	}
 
 
+	@ApiOperation(value = "게시판 글수정", notes = "수정할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@PostMapping("/modify")
+	public ResponseEntity<String> modifyHotplace(
+			@RequestPart(value = "file", required = false) MultipartFile file,
+	        @RequestParam String userId, @RequestParam String hotplaceName, @RequestParam String hotplaceDescription, @RequestParam String hotplaceAddress, @RequestParam int hotplaceId) throws Exception {
+		logger.info("modifyHotplace - 호출");
+		
+	    HotplaceDto hotplaceDto = new HotplaceDto();
+	    hotplaceDto.setUserId(userId);
+	    hotplaceDto.setHotplaceName(hotplaceName);
+	    hotplaceDto.setHotplaceDescription(hotplaceDescription);
+	    hotplaceDto.setHotplaceAddress(hotplaceAddress);
+	    hotplaceDto.setHotplaceId(hotplaceId);
+	    // 파일 업로드 처리
+	    if (file != null) {
+	        if (!file.isEmpty()) {
+	            try {
+	                byte[] fileData = file.getBytes();
+	                // 파일 저장 로직 추가
+	                hotplaceDto.setImg(fileData);
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+
+		if (hotplaceService.modifyHotplace(hotplaceDto)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+
 	@ApiOperation(value = "게시판 글목록", notes = "모든 게시글의 정보를 반환한다.", response = List.class)
 	@GetMapping
 	public ResponseEntity<List<HotplaceDto>> listHotplace(@ApiParam(value = "게시글을 얻기위한 부가정보.", required = true) BoardParameterDto boardParameterDto
@@ -124,18 +157,18 @@ public class HotplaceController {
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
-
-	@ApiOperation(value = "게시판 글수정", notes = "수정할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-	@PutMapping
-	public ResponseEntity<String> modifyHotplace(
-			@RequestBody @ApiParam(value = "수정할 글정보.", required = true) HotplaceDto hotplaceDto) throws Exception {
-		logger.info("modifyHotplace - 호출 {}", hotplaceDto);
-
-		if (hotplaceService.modifyHotplace(hotplaceDto)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
-	}
+//
+//	@ApiOperation(value = "게시판 글수정", notes = "수정할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+//	@PutMapping
+//	public ResponseEntity<String> modifyHotplace(
+//			@RequestBody @ApiParam(value = "수정할 글정보.", required = true) HotplaceDto hotplaceDto) throws Exception {
+//		logger.info("modifyHotplace - 호출 {}", hotplaceDto);
+//
+//		if (hotplaceService.modifyHotplace(hotplaceDto)) {
+//			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+//		}
+//		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+//	}
 
 	@ApiOperation(value = "게시판 글삭제", notes = "글번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@DeleteMapping("/{hotplaceno}")
