@@ -2,6 +2,7 @@ package com.ssafy.project.model.mapper;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import com.ssafy.project.model.BoardParameterDto;
 import com.ssafy.project.model.TipDto;
@@ -16,4 +17,6 @@ public interface TipMapper {
 	public int modifyTip(TipDto tipDto) throws SQLException;
 //	public void deleteMemo(int tipno) throws SQLException;
 	public int deleteTip(int tipno) throws SQLException;
+	
+	public List<TipDto> listMyTip(String userid) throws SQLException;
 }

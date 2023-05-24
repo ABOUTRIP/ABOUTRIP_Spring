@@ -1,5 +1,6 @@
 package com.ssafy.project.model.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.ssafy.project.model.BoardParameterDto;
@@ -16,4 +17,6 @@ public interface TipService {
 	public boolean updateLike(int tipno) throws Exception;
 	public boolean modifyTip(TipDto tipDto) throws Exception;
 	public boolean deleteTip(int tipno) throws Exception;
+	
+	public List<TipDto> listMyTip(String userid) throws SQLException;
 }

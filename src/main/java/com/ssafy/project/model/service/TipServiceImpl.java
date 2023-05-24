@@ -1,5 +1,6 @@
 package com.ssafy.project.model.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -79,6 +80,11 @@ public class TipServiceImpl implements TipService {
 	public boolean deleteTip(int tipId) throws Exception {
 //		sqlSession.getMapper(TipMapper.class).deleteTip(tipId);
 		return sqlSession.getMapper(TipMapper.class).deleteTip(tipId) == 1;
+	}
+
+	@Override
+	public List<TipDto> listMyTip(String userid) throws SQLException {
+		return sqlSession.getMapper(TipMapper.class).listMyTip(userid);
 	}
 
 

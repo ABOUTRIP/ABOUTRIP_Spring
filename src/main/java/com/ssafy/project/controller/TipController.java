@@ -81,7 +81,7 @@ public class TipController {
 		if (tipService.modifyTip(tipDto)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 
 	@ApiOperation(value = "게시판 글삭제", notes = "글번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
@@ -124,6 +124,17 @@ public class TipController {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+	@ApiOperation(value = "mytip 목록", notes = "mytip의 정보를 반환한다.", response = List.class)
+	@GetMapping("/mytip")
+	public ResponseEntity<List<TipDto>> listMyTip(@ApiParam(value = "mytip을 얻기위한 부가정보.", required = true)String userid) throws Exception {
+		logger.info("listMyTip - 호출");
+//		if (tipService.listMyTip(userid) != null) {
+//			return new ResponseEntity<List<TipDto>>(tipService.listMyTip(userid), HttpStatus.OK);
+//		}
+		return new ResponseEntity<List<TipDto>>(tipService.listMyTip(userid), HttpStatus.OK);
+//		return new ResponseEntity<List<TipDto>>(tipService.listMyTip(userid), HttpStatus.NO_CONTENT);
 	}
 	
 	
