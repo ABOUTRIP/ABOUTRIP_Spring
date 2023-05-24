@@ -167,10 +167,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `enjoytrip`.`hotplaces` (
   `hotplace_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` VARCHAR(16) NOT NULL,
-  `hotplace_title` VARCHAR(45) NOT NULL,
   `hotplace_name` VARCHAR(45) NOT NULL,
   `hotplace_description` VARCHAR(1000) NOT NULL,
   `hotplace_status` INT NOT NULL DEFAULT '0',
+  `hotplace_like_cnt` INT NOT NULL DEFAULT '0',
   `hotplace_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hotplace_delete_at` TIMESTAMP NULL DEFAULT NULL,
   `img` LONGBLOB NULL DEFAULT NULL,
@@ -180,6 +180,7 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`hotplaces` (
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -200,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`notices` (
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 47
+AUTO_INCREMENT = 53
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -246,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`tips` (
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
