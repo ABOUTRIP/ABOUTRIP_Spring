@@ -40,16 +40,16 @@
 	
  
  	<insert id="writePlan" parameterType="planDto">
-		insert into plans (user_id, plan_title, plan_contents, plan_startdate, plan_enddate, plan_path, plan_sido_code, plan_gugun_code)
-		values (#{userId}, #{planTitle}, #{planContents}, #{planStartDate}, #{planEndDate}, #{planPath}, #{planSidoCode}, #{planGugunCode})
+		insert into plans (user_id, plan_title, plan_contents, plan_startdate, plan_enddate, plan_sido_code, plan_gugun_code)
+		values (#{userId}, #{planTitle}, #{planContents}, #{planStartDate}, #{planEndDate}, #{planSidoCode}, #{planGugunCode})
 	</insert>
 	 
  	<insert id="writePlace" parameterType="placeDto">
-		insert into places (day, order, plan_id, user_id, address_name, category_group_code, category_group_name, category_name, distance, phone, place_name, place_url, road_address_name, x, y)
+		insert into place (day, order, plan_id, user_id, address_name, category_group_code, category_group_name, category_name, distance, phone, place_name, place_url, road_address_name, x, y)
 		values (#{day}, #{order}, #{plan_id}, #{user_id}, #{address_name}, #{category_group_code}, #{category_group_name}, #{category_name}, #{distance}, #{phone}, #{place_name}, #{place_url}, #{road_address_name}, #{x}, #{y})
 	</insert>
 	
-	<select id="listPlan" parameterType="map" resultMap="plan">
+<!-- 	<select id="listPlan" parameterType="map" resultMap="plan">
 		select *
 		from plans 
 		<if test="word != null and word != ''">
@@ -106,6 +106,6 @@
 		select *
 		from plans
 		where user_id = #{userId}
-	</select>  
+	</select>   -->
 	
 </mapper>

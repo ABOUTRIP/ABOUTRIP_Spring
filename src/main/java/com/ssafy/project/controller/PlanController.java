@@ -51,102 +51,107 @@ public class PlanController {
 		List<PlaceDto> planPath = planDto.getPlanPath();
 		for (int i = 0; i < planPath.size(); i++) {
 			planService.writePlace(planPath.get(i));
-
 		}
+		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+	}
 		
-		
-		logger.info("writePlan - 호출");
-		if (planService.writePlan(planDto)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-	}
-
-	@ApiOperation(value = "게시판 글목록", notes = "모든 게시글의 정보를 반환한다.", response = List.class)
-	@GetMapping
-	public ResponseEntity<List<PlanDto>> listPlan(@ApiParam(value = "게시글을 얻기위한 부가정보.", required = true) BoardParameterDto boardParameterDto) throws Exception {
-		logger.info("listPlan - 호출");
-		return new ResponseEntity<List<PlanDto>>(planService.listPlan(boardParameterDto), HttpStatus.OK);
-	}
-
-	@ApiOperation(value = "게시판 글보기", notes = "글번호에 해당하는 게시글의 정보를 반환한다.", response = PlanDto.class)
-	@GetMapping("/{planno}")
-	public ResponseEntity<?> getPlan(
-			@PathVariable("planno") @ApiParam(value = "얻어올 글의 글번호.", required = true) int planno) throws Exception {
-		logger.info("getPlan - 호출 : " + planno);
-//		planService.updateHit(planno);
-//		return new ResponseEntity<PlanDto>(planService.getPlan(planno), HttpStatus.OK);		
-		if (planService.getPlan(planno) != null) {
-//			planService.updateHit(planno);
-			return new ResponseEntity<PlanDto>(planService.getPlan(planno), HttpStatus.OK);	
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-	}
-
-	@ApiOperation(value = "게시판 글수정", notes = "수정할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-	@PutMapping
-	public ResponseEntity<String> modifyPlan(
-			@RequestBody @ApiParam(value = "수정할 글정보.", required = true) PlanDto planDto) throws Exception {
-		logger.info("modifyPlan - 호출 {}", planDto);
-
-		if (planService.modifyPlan(planDto)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-	}
-
-	@ApiOperation(value = "게시판 글삭제", notes = "글번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-	@DeleteMapping("/{planno}")
-	public ResponseEntity<String> deletePlan(
-			@PathVariable("planno") @ApiParam(value = "삭제할 글의 글번호.", required = true) int planno) throws Exception {
-		logger.info("deletePlan - 호출");
-		if (planService.deletePlan(planno)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-	}
-	
-	@ApiOperation(value = "게시판 글추천", notes = "추천할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-	@PostMapping("/like")
-	public ResponseEntity<String> likePlan(
-			@RequestBody @ApiParam(value = "수정할 글정보 (글번호만 포함)", required = true) PlanDto planDto) throws Exception {
-		logger.info("likePlan - 호출 {}", planDto);
-		
-		if (planService.updateLike(planDto.getPlanId()) == true) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-		}
-		
-		
-//		if (planService.updateLike(planDto)) {
-//			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-//		}
-//		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
-	}
-	
-	@ApiOperation(value = "게시판 글조회", notes = "조회할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-	@PostMapping("/hit")
-	public ResponseEntity<String> hitPlan(
-			@RequestBody @ApiParam(value = "조회할 글정보 (글번호만 포함)", required = true) PlanDto planDto) throws Exception {
-		logger.info("hitPlan - 호출 {}", planDto);
-		
-		if (planService.updateHit(planDto.getPlanId())) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-	}
-	
-	@ApiOperation(value = "myplan 목록", notes = "myplan의 정보를 반환한다.", response = List.class)
-	@GetMapping("/myplan")
-	public ResponseEntity<List<PlanDto>> listMyPlan(@ApiParam(value = "myplan을 얻기위한 부가정보.", required = true)String userid) throws Exception {
-		logger.info("listMyPlan - 호출");
-//		if (planService.listMyPlan(userid) != null) {
-//			return new ResponseEntity<List<PlanDto>>(planService.listMyPlan(userid), HttpStatus.OK);
-//		}
-		return new ResponseEntity<List<PlanDto>>(planService.listMyPlan(userid), HttpStatus.OK);
-//		return new ResponseEntity<List<PlanDto>>(planService.listMyPlan(userid), HttpStatus.NO_CONTENT);
-	}
+	/*
+	 * logger.info("writePlan - 호출"); if (planService.writePlan(planDto)) { return
+	 * new ResponseEntity<String>(SUCCESS, HttpStatus.OK); } return new
+	 * ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT); }
+	 * 
+	 * @ApiOperation(value = "게시판 글목록", notes = "모든 게시글의 정보를 반환한다.", response =
+	 * List.class)
+	 * 
+	 * @GetMapping public ResponseEntity<List<PlanDto>> listPlan(@ApiParam(value =
+	 * "게시글을 얻기위한 부가정보.", required = true) BoardParameterDto boardParameterDto)
+	 * throws Exception { logger.info("listPlan - 호출"); return new
+	 * ResponseEntity<List<PlanDto>>(planService.listPlan(boardParameterDto),
+	 * HttpStatus.OK); }
+	 * 
+	 * @ApiOperation(value = "게시판 글보기", notes = "글번호에 해당하는 게시글의 정보를 반환한다.", response
+	 * = PlanDto.class)
+	 * 
+	 * @GetMapping("/{planno}") public ResponseEntity<?> getPlan(
+	 * 
+	 * @PathVariable("planno") @ApiParam(value = "얻어올 글의 글번호.", required = true) int
+	 * planno) throws Exception { logger.info("getPlan - 호출 : " + planno); //
+	 * planService.updateHit(planno); // return new
+	 * ResponseEntity<PlanDto>(planService.getPlan(planno), HttpStatus.OK); if
+	 * (planService.getPlan(planno) != null) { // planService.updateHit(planno);
+	 * return new ResponseEntity<PlanDto>(planService.getPlan(planno),
+	 * HttpStatus.OK); } return new ResponseEntity<String>(FAIL,
+	 * HttpStatus.NO_CONTENT); }
+	 * 
+	 * @ApiOperation(value = "게시판 글수정", notes =
+	 * "수정할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.",
+	 * response = String.class)
+	 * 
+	 * @PutMapping public ResponseEntity<String> modifyPlan(
+	 * 
+	 * @RequestBody @ApiParam(value = "수정할 글정보.", required = true) PlanDto planDto)
+	 * throws Exception { logger.info("modifyPlan - 호출 {}", planDto);
+	 * 
+	 * if (planService.modifyPlan(planDto)) { return new
+	 * ResponseEntity<String>(SUCCESS, HttpStatus.OK); } return new
+	 * ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT); }
+	 * 
+	 * @ApiOperation(value = "게시판 글삭제", notes =
+	 * "글번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.",
+	 * response = String.class)
+	 * 
+	 * @DeleteMapping("/{planno}") public ResponseEntity<String> deletePlan(
+	 * 
+	 * @PathVariable("planno") @ApiParam(value = "삭제할 글의 글번호.", required = true) int
+	 * planno) throws Exception { logger.info("deletePlan - 호출"); if
+	 * (planService.deletePlan(planno)) { return new ResponseEntity<String>(SUCCESS,
+	 * HttpStatus.OK); } return new ResponseEntity<String>(FAIL,
+	 * HttpStatus.NO_CONTENT); }
+	 * 
+	 * @ApiOperation(value = "게시판 글추천", notes =
+	 * "추천할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.",
+	 * response = String.class)
+	 * 
+	 * @PostMapping("/like") public ResponseEntity<String> likePlan(
+	 * 
+	 * @RequestBody @ApiParam(value = "수정할 글정보 (글번호만 포함)", required = true) PlanDto
+	 * planDto) throws Exception { logger.info("likePlan - 호출 {}", planDto);
+	 * 
+	 * if (planService.updateLike(planDto.getPlanId()) == true) { return new
+	 * ResponseEntity<String>(SUCCESS, HttpStatus.OK); } else { return new
+	 * ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT); }
+	 * 
+	 * 
+	 * // if (planService.updateLike(planDto)) { // return new
+	 * ResponseEntity<String>(SUCCESS, HttpStatus.OK); // } // return new
+	 * ResponseEntity<String>(FAIL, HttpStatus.OK); }
+	 * 
+	 * @ApiOperation(value = "게시판 글조회", notes =
+	 * "조회할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.",
+	 * response = String.class)
+	 * 
+	 * @PostMapping("/hit") public ResponseEntity<String> hitPlan(
+	 * 
+	 * @RequestBody @ApiParam(value = "조회할 글정보 (글번호만 포함)", required = true) PlanDto
+	 * planDto) throws Exception { logger.info("hitPlan - 호출 {}", planDto);
+	 * 
+	 * if (planService.updateHit(planDto.getPlanId())) { return new
+	 * ResponseEntity<String>(SUCCESS, HttpStatus.OK); } return new
+	 * ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT); }
+	 * 
+	 * @ApiOperation(value = "myplan 목록", notes = "myplan의 정보를 반환한다.", response =
+	 * List.class)
+	 * 
+	 * @GetMapping("/myplan") public ResponseEntity<List<PlanDto>>
+	 * listMyPlan(@ApiParam(value = "myplan을 얻기위한 부가정보.", required = true)String
+	 * userid) throws Exception { logger.info("listMyPlan - 호출"); // if
+	 * (planService.listMyPlan(userid) != null) { // return new
+	 * ResponseEntity<List<PlanDto>>(planService.listMyPlan(userid), HttpStatus.OK);
+	 * // } return new ResponseEntity<List<PlanDto>>(planService.listMyPlan(userid),
+	 * HttpStatus.OK); // return new
+	 * ResponseEntity<List<PlanDto>>(planService.listMyPlan(userid),
+	 * HttpStatus.NO_CONTENT); }
+	 */
 	
 	
 	private ResponseEntity<String> exceptionHandling(Exception e) {
