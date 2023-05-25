@@ -41,10 +41,22 @@ public class PlaceDto {
 	
 	@ApiModelProperty(value = "y 좌표")
 	private String y;
+	
+	@ApiModelProperty(value = "day")
+	private int day;
+	
+	@ApiModelProperty(value = "order")
+	private int order;
+	
+	@ApiModelProperty(value = "plan_id")
+	private String plan_id;
+	
+	@ApiModelProperty(value = "user_id")
+	private String user_id;
 
 	public PlaceDto(String id, String address_name, String category_group_code, String category_group_name,
 			String category_name, String distance, String phone, String place_name, String place_url,
-			String road_address_name, String x, String y) {
+			String road_address_name, String x, String y, int day, int order, String plan_id, String user_id) {
 		super();
 		this.id = id;
 		this.address_name = address_name;
@@ -58,6 +70,10 @@ public class PlaceDto {
 		this.road_address_name = road_address_name;
 		this.x = x;
 		this.y = y;
+		this.day = day;
+		this.order = order;
+		this.plan_id = plan_id;
+		this.user_id = user_id;
 	}
 
 	public String getId() {
@@ -156,11 +172,45 @@ public class PlaceDto {
 		this.y = y;
 	}
 
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
+	public String getPlan_id() {
+		return plan_id;
+	}
+
+	public void setPlan_id(String plan_id) {
+		this.plan_id = plan_id;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
 	@Override
 	public String toString() {
 		return "PlaceDto [id=" + id + ", address_name=" + address_name + ", category_group_code=" + category_group_code
 				+ ", category_group_name=" + category_group_name + ", category_name=" + category_name + ", distance="
 				+ distance + ", phone=" + phone + ", place_name=" + place_name + ", place_url=" + place_url
-				+ ", road_address_name=" + road_address_name + ", x=" + x + ", y=" + y + "]";
+				+ ", road_address_name=" + road_address_name + ", x=" + x + ", y=" + y + ", day=" + day + ", order="
+				+ order + ", plan_id=" + plan_id + ", user_id=" + user_id + "]";
 	}
+
 }
