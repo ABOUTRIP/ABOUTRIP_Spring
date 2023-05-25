@@ -29,4 +29,6 @@ public interface MemberService {
 	public Object getRefreshToken(String userid) throws Exception;
 	public void deleRefreshToken(String userid) throws Exception;
 	
+	String getDeleteAt(String userid);
+	
 }

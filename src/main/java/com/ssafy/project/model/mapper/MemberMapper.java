@@ -30,4 +30,6 @@ public interface MemberMapper {
 	public Object getRefreshToken(String userId) throws SQLException;
 	public void deleteRefreshToken(Map<String, String> map) throws SQLException;
 	
+	String getDeleteAt(String userid);
+	
 }

@@ -35,13 +35,16 @@ import io.swagger.annotations.ApiResponses;
 public class AdminUserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminUserController.class);
-
+	private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
+	
+	@Autowired
 	private MemberService memberService;
 
-	@Autowired
-	public AdminUserController(MemberService memberService) {
-		this.memberService = memberService;
-	}
+//	@Autowired
+//	public AdminUserController(MemberService memberService) {
+//		this.memberService = memberService;
+//	}
 
 	@ApiOperation(value = "회원목록", notes = "회원의 <big>전체 목록</big>을 반환해 줍니다.")
 	@ApiResponses({ @ApiResponse(code = 200, message = "회원목록 OK!!"), @ApiResponse(code = 404, message = "페이지없어!!"),
@@ -69,8 +72,9 @@ public class AdminUserController {
 		logger.debug("userRegister memberDto : {}", memberDto);
 		try {
 			memberService.joinMember(memberDto);
-			List<MemberDto> list = memberService.listMember(null);
-			return new ResponseEntity<List<MemberDto>>(list, HttpStatus.OK);
+//			List<MemberDto> list = memberService.listMember(null);
+//			return new ResponseEntity<List<MemberDto>>(list, HttpStatus.OK);
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 //			return new ResponseEntity<Integer>(cnt, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return exceptionHandling(e);

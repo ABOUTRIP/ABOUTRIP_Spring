@@ -30,10 +30,8 @@
 	</select>
 
 	<insert id="joinMember" parameterType="memberDto">
-		insert into members
-		(user_name, user_id, user_password, email, sido_code, gugun_code)
-		values
-		(#{userName}, #{userId}, #{userPwd}, #{email}, #{sidoCode}, #{gugunCode})
+		insert into members (user_name, user_id, user_password, email, sido_code, gugun_code)
+		values (#{userName}, #{userId}, #{userPwd}, #{email}, #{sidoCode}, #{gugunCode})
 	</insert>
 
 	<select id="loginMember" parameterType="map" resultMap="member">
@@ -45,8 +43,8 @@
 	</select>
 
 	<!-- ADMIN -->
-	<select id="listMember" resultMap="memberAll">
-		select user_id, user_name, user_password, email, is_admin, sido_code, gugun_code, delete_at, create_at
+	<select id="listMember" parameterType="map" resultMap="memberAll">
+		select *
 		from members
 	</select> <!-- 임시 -->
 
@@ -74,7 +72,7 @@
 		where user_id = #{userId}
 	</delete> -->
 	
-	<update id="deleteMember" parameterType="String">
+	<update id="deleteMember" parameterType="string">
 		update members
 		set delete_at = now()
 		where user_id = #{userId}
@@ -112,5 +110,11 @@
 		set token = #{token, jdbcType=VARCHAR}
 		where user_id = #{userId}
 	</update>
+	
+	<select id="getDeleteAt" parameterType="string" resultType="string">
+		select DATE_FORMAT(delete_at, 'yyyy-MM-dd HH:mm:ss')
+		from members
+		where user_id = #{userId}
+	</select>
 	
 </mapper>

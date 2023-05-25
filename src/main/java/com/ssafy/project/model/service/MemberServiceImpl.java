@@ -19,12 +19,13 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	@Autowired
 	private MemberMapper memberMapper;
 
-	public MemberServiceImpl(MemberMapper memberMapper) {
-		super();
-		this.memberMapper = memberMapper;
-	}
+//	public MemberServiceImpl(MemberMapper memberMapper) {
+//		super();
+//		this.memberMapper = memberMapper;
+//	}
 
 	@Override
 	public int idCheck(String userId) throws Exception {
@@ -96,6 +97,11 @@ public class MemberServiceImpl implements MemberService {
 		map.put("userId", userid);
 		map.put("token", null);
 		sqlSession.getMapper(MemberMapper.class).deleteRefreshToken(map);
+	}
+
+	@Override
+	public String getDeleteAt(String userid) {
+		return memberMapper.getDeleteAt(userid);
 	}
 
 }

@@ -51,18 +51,26 @@ public class MemberController {
 		try {
 			MemberDto loginUser = memberService.login(memberDto);
 			if (loginUser != null) {
-				String accessToken = jwtService.createAccessToken("userid", loginUser.getUserId());// key, data
-				String refreshToken = jwtService.createRefreshToken("userid", loginUser.getUserId());// key, data
-				memberService.saveRefreshToken(memberDto.getUserId(), refreshToken);
-				logger.debug("로그인 accessToken 정보 : {}", accessToken);
-				logger.debug("로그인 refreshToken 정보 : {}", refreshToken);
-				resultMap.put("access-token", accessToken);
-				resultMap.put("refresh-token", refreshToken);
-				resultMap.put("message", SUCCESS);
-				status = HttpStatus.ACCEPTED;
+				String userid = memberDto.getUserId();
+				String deleteAt = memberService.getDeleteAt(userid);
+				// deleteAt - true/false 나누기
+				if (deleteAt != null) {
+					resultMap.put("message", "deleted member");
+					status = HttpStatus.ACCEPTED;
+				} else {
+					String accessToken = jwtService.createAccessToken("userid", loginUser.getUserId());// key, data
+					String refreshToken = jwtService.createRefreshToken("userid", loginUser.getUserId());// key, data
+					memberService.saveRefreshToken(memberDto.getUserId(), refreshToken);
+					logger.debug("로그인 accessToken 정보 : {}", accessToken);
+					logger.debug("로그인 refreshToken 정보 : {}", refreshToken);
+					resultMap.put("access-token", accessToken);
+					resultMap.put("refresh-token", refreshToken);
+					resultMap.put("message", SUCCESS);
+					status = HttpStatus.OK;
+				}
 			} else {
 				resultMap.put("message", FAIL);
-				status = HttpStatus.ACCEPTED;
+				status = HttpStatus.NO_CONTENT;
 			}
 		} catch (Exception e) {
 			logger.error("로그인 실패 : {}", e);
