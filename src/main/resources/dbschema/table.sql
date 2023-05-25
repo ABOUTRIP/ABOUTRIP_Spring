@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`favorite` (
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`hotplaces` (
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -209,19 +209,31 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `enjoytrip`.`plans` (
   `plan_id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` VARCHAR(16) NOT NULL,
   `plan_startdate` TIMESTAMP NOT NULL,
   `plan_enddate` TIMESTAMP NOT NULL,
   `plan_title` VARCHAR(45) NOT NULL,
   `plan_contents` VARCHAR(1000) NULL DEFAULT NULL,
-  `user_id` VARCHAR(16) NOT NULL,
   `plan_path` JSON NOT NULL,
+  `plan_sido_code` INT NULL DEFAULT '0',
+  `plan_gugun_code` INT NULL DEFAULT '0',
+  `plan_view_cnt` INT NOT NULL DEFAULT '0',
+  `plan_like_cnt` INT NOT NULL DEFAULT '0',
   `plan_create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `plan_delete_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`plan_id`),
   INDEX `plans_to_user_user_id_fk_idx` (`user_id` ASC) VISIBLE,
+  INDEX `plans_to_sido_sido_code_fk_idx` (`plan_sido_code` ASC) VISIBLE,
+  INDEX `plans_to_gugun_gugun_code_fk_idx` (`plan_gugun_code` ASC) VISIBLE,
+  CONSTRAINT `plans_to_gugun_gugun_code_fk`
+    FOREIGN KEY (`plan_gugun_code`)
+    REFERENCES `enjoytrip`.`gugun` (`gugun_code`),
   CONSTRAINT `plans_to_members_user_id_fk`
     FOREIGN KEY (`user_id`)
-    REFERENCES `enjoytrip`.`members` (`user_id`))
+    REFERENCES `enjoytrip`.`members` (`user_id`),
+  CONSTRAINT `plans_to_sido_sido_code_fk`
+    FOREIGN KEY (`plan_sido_code`)
+    REFERENCES `enjoytrip`.`sido` (`sido_code`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -245,9 +257,29 @@ CREATE TABLE IF NOT EXISTS `enjoytrip`.`tips` (
     FOREIGN KEY (`user_id`)
     REFERENCES `enjoytrip`.`members` (`user_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 15
+AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `enjoytrip`.`place`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `enjoytrip`.`place` (
+  `id` VARCHAR(100) NOT NULL,
+  `address_name` VARCHAR(1000) NULL,
+  `category_group_code` VARCHAR(1000) NULL,
+  `category_group_name` VARCHAR(1000) NULL,
+  `category_name` VARCHAR(1000) NULL,
+  `distance` VARCHAR(1000) NULL,
+  `phone` VARCHAR(1000) NULL,
+  `place_name` VARCHAR(1000) NULL,
+  `place_url` VARCHAR(1000) NULL,
+  `road_address_name` VARCHAR(1000) NULL,
+  `x` VARCHAR(1000) NULL,
+  `y` VARCHAR(1000) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

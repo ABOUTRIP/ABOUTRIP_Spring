@@ -85,5 +85,13 @@
 		where user_id = #{user_id}
 	</select> 
 	
+	<select id="listBestHotplace" resultMap="hotplace">
+		select *
+		from hotplaces
+		where img is not null
+		order by hotplace_like_cnt desc
+		limit 3;
+	</select> 
+	
 </mapper>	
 

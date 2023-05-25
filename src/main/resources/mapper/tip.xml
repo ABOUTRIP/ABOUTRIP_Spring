@@ -81,7 +81,7 @@
 	<select id="listMyTip" parameterType="string" resultMap="tip">
 		select *
 		from tips
-		where user_id = #{user_id}
+		where user_id = #{userId}
 	</select> 
 	
 </mapper>	

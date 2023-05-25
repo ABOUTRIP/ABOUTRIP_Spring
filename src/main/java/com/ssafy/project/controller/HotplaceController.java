@@ -197,5 +197,11 @@ public class HotplaceController {
 		return new ResponseEntity<List<HotplaceDto>>(hotplaceService.listMyHotplace(userid), HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "best hotplace 목록 (top 3)", notes = "best hotplace의 정보를 반환한다.", response = List.class)
+	@GetMapping("/besthotplace")
+	public ResponseEntity<List<HotplaceDto>> listBestHotplace() throws Exception {
+		logger.info("listMyHotplace - 호출");
+		return new ResponseEntity<List<HotplaceDto>>(hotplaceService.listBestHotplace(), HttpStatus.OK);
+	}
 }
 

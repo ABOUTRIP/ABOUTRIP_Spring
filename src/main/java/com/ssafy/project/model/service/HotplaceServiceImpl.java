@@ -80,6 +80,11 @@ public class HotplaceServiceImpl implements HotplaceService {
 	public List<HotplaceDto> listMyHotplace(String userid) throws SQLException {
 		return sqlSession.getMapper(HotplaceMapper.class).listMyHotplace(userid);
 	}
+
+	@Override
+	public List<HotplaceDto> listBestHotplace() throws SQLException {
+		return sqlSession.getMapper(HotplaceMapper.class).listBestHotplace();
+	}
 	
 	
 }

@@ -16,4 +16,7 @@ public interface HotplaceMapper {
 //	public void deleteMemo(int hotplaceno) throws SQLException;
 	public int deleteHotplace(int hotplaceno) throws SQLException;
 	public List<HotplaceDto> listMyHotplace(String userid) throws SQLException;
+	
+	public List<HotplaceDto> listBestHotplace() throws SQLException;
+	
 }

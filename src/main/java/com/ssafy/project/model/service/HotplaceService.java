@@ -19,4 +19,5 @@ public interface HotplaceService {
 	public boolean deleteHotplace(int hotplaceno) throws Exception;
 	
 	public List<HotplaceDto> listMyHotplace(String userid) throws SQLException;
+	public List<HotplaceDto> listBestHotplace() throws SQLException;
 }
